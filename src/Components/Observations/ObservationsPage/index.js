@@ -6,7 +6,7 @@ const Observations = (props) => {
     'likes to create things',
     'has trouble giving up control',
     'is irritable without coffee',
-    'gets distracted by his phone',
+    'gets distracted by his phone', 
   ];
   
   const list = observations.map((obs) => <li>{obs}</li>);
