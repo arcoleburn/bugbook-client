@@ -18,10 +18,7 @@ let userId=3 //hardcoded. need to change with auth
   setIsLoading(false)
   }, [])
 
-  console.log('entries', entries)
-
   let list = entries.map((day) => {
-    console.log(day);
     return (
       <DailySummary
         date={day.date_created}
@@ -32,7 +29,6 @@ let userId=3 //hardcoded. need to change with auth
       />
     );
   });
-  console.log(list);
   return (
       <>
       <Header>
