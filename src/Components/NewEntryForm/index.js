@@ -1,42 +1,78 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import Header from '../Header';
-import Date from '../Date'
-import { EntryForm } from './NewEntryForm.styles'
+import Date from '../Date';
+import { EntryForm } from './NewEntryForm.styles';
+import ApiService from '../../services/bugbook-api-service';
 
-const NewEntry = (props) => {  
+const initialFormState={
+  rating:0,
+  hours:0,
+  journal:''
+}
+function reducer(state, {field, value}){
+  return{
+    ...state,
+    [field]:value
+  }
+}
+const userId = 1 //HARD CODED NEED TO MAKE DYNAMIC
 
+const NewEntry = (props) => {
+  const [state,dispatch] = useReducer(reducer, initialFormState)
+  const onChange = (e)=>{
+    dispatch({field:e.target.name, value:e.target.value})
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    let newEntry={
+      day_rating: (state.rating),
+      deep_hours: (state.hours),
+      journal_entry:state.journal
+    }
+console.log('new entry', newEntry)
+ApiService.postEntry(userId, newEntry)
+props.history.push('./timeline')
+  };
   return (
-  <>
-    <Header/>
-    <Date/>
+    <>
+      <Header />
+      <Date />
 
-    <EntryForm>
-    
-      <label htmlFor="rating">How was today? (-2/+2 scale)</label>
-      <select name="rating" id="rating" defaultValue={0}>
-        <option value="-2">-2</option>
-        <option value="-1">-1</option>
-        <option value="0"  >
-          0
-        </option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-      <label htmlFor="hours">
-        {' '}
-        How many hours did you spend creatively today?{' '}
-      </label>
-      <input type="number" name="hours" id="hours" step='.5' min='0' />
-      <label htmlFor="journal"> Tell me about today:</label>
-      <textarea name="journal" id="journal"></textarea>
-    <button type='submit'>Submit</button>
-    
-    </EntryForm>
+      <EntryForm>
+        <label htmlFor="rating">How was today? (-2/+2 scale)</label>
+        <select
+          name="rating"
+          id="rating"
+          defaultValue={0}
+          onChange={onChange}
+        >
+          <option value="-2">-2</option>
+          <option value="-1">-1</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+        <label htmlFor="hours">
+          {' '}
+          How many hours did you spend creatively today?{' '}
+        </label>
+        <input
+          type="number"
+          name="hours"
+          id="hours"
+          step=".5"
+          min="0"
+          onChange={onChange}
+        />
+        <label htmlFor="journal"> Tell me about today:</label>
+        <textarea name="journal" id="journal" onChange={onChange}></textarea>
+        <button onClick={handleSubmit}>Submit</button>
+      </EntryForm>
     </>
   );
 };
 
 NewEntry.defaultProps = {
-  rating:0
-} 
-export default NewEntry
+  rating: 0,
+};
+export default NewEntry;

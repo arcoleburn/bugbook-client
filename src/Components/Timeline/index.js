@@ -10,7 +10,7 @@ const [entries, setEntries] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 
 
-let userId=3 //hardcoded. need to change with auth
+let userId=1 //hardcoded. need to change with auth
 
   useEffect(()=>{
     setIsLoading(true)

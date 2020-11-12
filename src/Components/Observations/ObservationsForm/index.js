@@ -1,12 +1,22 @@
+import { useState } from "react"
 
 const ObsForm = (props) => {
 
+const [input, setInput] = useState('')    
 
+
+const onChange =(e) => {setInput(e.target.value)}
+
+const onSubmitForm = (e) => {
+    e.preventDefault()
+    props.onSubmit(input)
+    setInput('')
+}
     return(
-        <form>
+        <form >
             <label htmlFor='entry'>The bug {props.name || 'John'}...</label>
-            <input type='text' id='entry'/>
-            <button type='submit'> Add Observation</button>
+            <input value={input} onChange={onChange} type='text' id='entry'/>
+            <button onClick={onSubmitForm}> Add Observation</button>
         </form>
     )
 }
