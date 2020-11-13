@@ -19,6 +19,7 @@ const Observations = (props) => {
   console.log('payload in obs', payload)
 
   let userId = payload.userId//HARD CODED NEED TO CHANGE TO BE DYNAMIC 
+ const firstName =payload.firstName
   const [obs, setObs] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -46,9 +47,9 @@ console.log('obs', obs)
   return (
     <>
     <Header/>
-      <h2> The bug {props.firstname || 'John'} :</h2>
+      <h2> The bug {firstName || 'John'} :</h2>
       <ul>{list}</ul>
-      <ObservationsForm onSubmit={handleObsAdded}/>
+      <ObservationsForm firstName={firstName} onSubmit={handleObsAdded}/>
     </>
   );
 };

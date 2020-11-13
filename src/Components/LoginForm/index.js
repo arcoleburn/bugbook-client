@@ -20,7 +20,7 @@ const LoginForm = (props) => {
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
-        props.updateId(res.userId)
+        //props.updateId(res.userId)
         props.onLoginSuccess()
       })
       .catch((res) => {

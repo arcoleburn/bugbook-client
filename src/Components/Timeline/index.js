@@ -2,16 +2,18 @@ import DailySummary from '../DailySummary';
 import Header from '../Header';
 import { useEffect, useState } from 'react'
 import ApiService from '../../services/bugbook-api-service';
-
+import jwt from 'jsonwebtoken'
+import TokenService from '../../services/token.service'
 
 const Timeline = (props) => {
 
 const [entries, setEntries] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 
+const payload = jwt.decode(TokenService.getAuthToken())
+console.log('payload in obs', payload)
 
-let userId=props.userId //hardcoded. need to change with auth
-
+let userId = payload.userId
   useEffect(()=>{
     setIsLoading(true)
     ApiService.getEntries(userId).then((resData)=>setEntries(resData))

@@ -17,14 +17,19 @@ import {
 import jwt from 'jsonwebtoken'
 import TokenService from '../src/services/token.service'
 import DailySummary from './Components/DailySummary';
+import RegistrationPage from './Components/RegistrationPage';
 
 const App = () => {
-  const [userId, setUserId] = useState(jwt.decode(TokenService.getAuthToken()).userId);
+  const [userId, setUserId] = useState(null);
 
+  if(TokenService.getAuthToken()){
+    setUserId()//jwt.decode(TokenService.getAuthToken()).userId)
+  }
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/register" component={RegistrationPage}/>
         <Route
           exact
           path="/login"

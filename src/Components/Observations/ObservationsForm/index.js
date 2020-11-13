@@ -14,7 +14,7 @@ const onSubmitForm = (e) => {
 }
     return(
         <form >
-            <label htmlFor='entry'>The bug {props.name || 'John'}...</label>
+            <label htmlFor='entry'>The bug {props.firstName || 'John'}...</label>
             <input value={input} onChange={onChange} type='text' id='entry'/>
             <button onClick={onSubmitForm}> Add Observation</button>
         </form>

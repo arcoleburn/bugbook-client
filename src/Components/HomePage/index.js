@@ -3,6 +3,7 @@ import Date from '../Date'
 import {Link} from 'react-router-dom'
 import { Wrapper } from './HomePage.styles'
 import Header from '../Header';
+import RegistrationForm from '../RegistrationForm';
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
         <Link to ='/timeline'>Timeline</Link>
         <Link to ='/observations'>Observations</Link> 
         <Link to ='/'>Vizualize</Link>
-      
+   
     </Wrapper>
   );
 };
