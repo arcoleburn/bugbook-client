@@ -15,7 +15,6 @@ function reducer(state, {field, value}){
     [field]:value
   }
 }
-const userId = 1 //HARD CODED NEED TO MAKE DYNAMIC
 
 const NewEntry = (props) => {
   const [state,dispatch] = useReducer(reducer, initialFormState)
@@ -30,7 +29,7 @@ const NewEntry = (props) => {
       journal_entry:state.journal
     }
 console.log('new entry', newEntry)
-ApiService.postEntry(userId, newEntry)
+ApiService.postEntry(props.userId, newEntry)
 props.history.push('./timeline')
   };
   return (

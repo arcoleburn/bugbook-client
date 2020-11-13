@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import ApiService from '../../../services/bugbook-api-service';
+import TokenService from '../../../services/token.service';
 import Header from '../../Header';
 import ObservationsForm from '../ObservationsForm'
+import jwt from 'jsonwebtoken'
 
 const Observations = (props) => {
+  console.log('obs props', props)
   const observations = [
     'likes to create things',
     'has trouble giving up control',
@@ -12,7 +15,10 @@ const Observations = (props) => {
     'gets distracted by his phone', 
   ];
 
-  let userId = 1 //HARD CODED NEED TO CHANGE TO BE DYNAMIC 
+  const payload = jwt.decode(TokenService.getAuthToken())
+  console.log('payload in obs', payload)
+
+  let userId = payload.userId//HARD CODED NEED TO CHANGE TO BE DYNAMIC 
   const [obs, setObs] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 

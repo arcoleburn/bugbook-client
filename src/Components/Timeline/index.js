@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import ApiService from '../../services/bugbook-api-service';
 
 
-const Timeline = () => {
+const Timeline = (props) => {
 
 const [entries, setEntries] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 
 
-let userId=1 //hardcoded. need to change with auth
+let userId=props.userId //hardcoded. need to change with auth
 
   useEffect(()=>{
     setIsLoading(true)
