@@ -4,26 +4,23 @@ import { useEffect, useState } from 'react'
 import ApiService from '../../services/bugbook-api-service';
 import jwt from 'jsonwebtoken'
 import TokenService from '../../services/token.service'
+import userInfoService from '../../services/user-info-service';
 
 const Timeline = (props) => {
 
-const [entries, setEntries] = useState([])
 const [isLoading, setIsLoading] = useState(false)
 
-const payload = jwt.decode(TokenService.getAuthToken())
-console.log('payload in obs', payload)
 
-let userId = payload.userId
   useEffect(()=>{
     setIsLoading(true)
-    ApiService.getEntries(userId).then((resData)=>setEntries(resData))
+    ApiService.getEntries().then((resData)=>props.setEntries(resData))
   setIsLoading(false)
-  }, [])
-
-  let list = entries.map((day) => {
+  })
+  
+  let list = props.entries.sort((a,b)=>Date.parse(b.date_created)-Date.parse(a.date_created)).map((day) => {
     return (
       <DailySummary
-        date={day.date_created}
+        date={new Date(day.date_created).toDateString()}
         hours={day.deep_hours}
         rating={day.day_rating}
         entry={day.journal_entry}
@@ -32,10 +29,7 @@ let userId = payload.userId
     );
   });
   return (
-      <>
-      <Header>
-          Timeline
-      </Header>
+      <><h2> Timeline</h2>
       {isLoading? 'loading...': list}
       </>)
 };

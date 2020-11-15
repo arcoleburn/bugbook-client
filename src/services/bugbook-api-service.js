@@ -2,25 +2,29 @@ import config from '../config';
 import TokenService from './token.service';
 
 const ApiService = {
-  getEntries(userId) {
+  getEntries() {
     console.log(`get entries ran`);
-    return fetch(`${config.API_ENDPOINT}/entries/${userId}`, {
+    return fetch(`${config.API_ENDPOINT}/entries/`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
     }).then((res) => res.json().then((data) => data));
   },
-  getObservations(userId) {
+  getObservations() {
     console.log('get observations ran');
     return fetch(
-      `${config.API_ENDPOINT}/observations/${userId}`
+      `${config.API_ENDPOINT}/observations/`, {
+        headers: {
+          authorization: `bearer ${TokenService.getAuthToken()}`,
+        },
+      }
     ).then((res) => res.json().then((data) => data));
   },
 
-  postEntry(userId, data) {
+  postEntry( data) {
     console.log('post entry ran');
     console.log('data sent: ', JSON.stringify(data));
-    return fetch(`${config.API_ENDPOINT}/entries/${userId}`, {
+    return fetch(`${config.API_ENDPOINT}/entries/`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -32,9 +36,9 @@ const ApiService = {
       .then((data) => console.log('success', data));
   },
 
-  postObservation(userId, data) {
+  postObservation(data) {
     console.log('post obs ran');
-    return fetch(`${config.API_ENDPOINT}/observations/${userId}`, {
+    return fetch(`${config.API_ENDPOINT}/observations/`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

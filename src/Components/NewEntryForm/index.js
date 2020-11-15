@@ -5,6 +5,8 @@ import { EntryForm } from './NewEntryForm.styles';
 import ApiService from '../../services/bugbook-api-service';
 import jwt from 'jsonwebtoken'
 import TokenService from '../../services/token.service'
+import userInfoService from '../../services/user-info-service';
+
 const initialFormState={
   rating:0,
   hours:0,
@@ -16,14 +18,13 @@ function reducer(state, {field, value}){
     [field]:value
   }
 }
-const payload = jwt.decode(TokenService.getAuthToken())
-console.log('payload in obs', payload)
 
-let userId = payload.userId
+
+
 
 const NewEntry = (props) => {
   const [state,dispatch] = useReducer(reducer, initialFormState)
-  console.log('state', state)
+ 
   const onChange = (e)=>{
     dispatch({field:e.target.name, value:e.target.value})
   }
@@ -35,12 +36,12 @@ const NewEntry = (props) => {
       journal_entry:state.journal
     }
 console.log('new entry', newEntry)
-ApiService.postEntry(userId, newEntry)
+ApiService.postEntry( newEntry)
+props.setEntries([...props.entries], newEntry)
 props.history.push('./timeline')
   };
   return (
     <>
-      <Header />
       <Date />
 
       <EntryForm>

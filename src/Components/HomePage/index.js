@@ -5,15 +5,16 @@ import { Wrapper } from './HomePage.styles'
 import Header from '../Header';
 import RegistrationForm from '../RegistrationForm';
 
-const Home = () => {
+const Home = (props) => {
+  console.log('home props', props)
   return (
     <Wrapper>
-      <Header/>
+      {/* <Header setUserId = {props.setUserId} setFirstName={props.setFirstName} /> */}
       <Date />
       <Link to='/new-entry'>Today's Entry</Link>
         <Link to ='/timeline'>Timeline</Link>
         <Link to ='/observations'>Observations</Link> 
-        <Link to ='/'>Vizualize</Link>
+        <Link to ='/vizualize'>Vizualize</Link>
    
     </Wrapper>
   );

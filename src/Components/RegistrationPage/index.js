@@ -9,7 +9,6 @@ const RegistrationPage = (props) => {
 
   return (
     <>
-    <Header/>
       <h2>Register</h2>
       <RegistrationForm
         onRegistrationSuccess={handleRegistrationSuccess}

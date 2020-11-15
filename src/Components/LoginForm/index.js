@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import TokenService from '../../services/token.service';
 import AuthApiService from '../../services/auth-api-service';
+import userInfoService from '../../services/user-info-service';
 
 const LoginForm = (props) => {
-  console.log('login form props:', props)
   const [error, setError] = useState(null);
 
   const handleSubmitJwtAuth = (ev) => {
@@ -20,8 +20,9 @@ const LoginForm = (props) => {
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
-        //props.updateId(res.userId)
-        props.onLoginSuccess()
+        //userInfoService.saveUserId(res.userId);
+        //userInfoService.saveUserFirstName(res.firstName)
+        props.onLoginSuccess();
       })
       .catch((res) => {
         setError({ error: res.error });
@@ -29,15 +30,14 @@ const LoginForm = (props) => {
   };
 
   return (
-      <form onSubmit={handleSubmitJwtAuth}>
-          <label htmlFor='username'> Username: </label>
-          <input required type='text' id='username'/>
-          <label htmlFor= 'password'>Password: </label>
-          <input required id='password' type='password'/>
-          <button type='submit'> Login </button>
-      </form>
-  )
-
+    <form onSubmit={handleSubmitJwtAuth}>
+      <label htmlFor="username"> Username: </label>
+      <input required type="text" id="username" />
+      <label htmlFor="password">Password: </label>
+      <input required id="password" type="password" />
+      <button type="submit"> Login </button>
+    </form>
+  );
 };
 
-export default LoginForm
+export default LoginForm;
