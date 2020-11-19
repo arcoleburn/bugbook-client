@@ -47,27 +47,41 @@ const Timeline = (props) => {
   console.log('chunked list', chunk(list, 14));
   let chunkedList = chunk(list, 14);
 
-  return (
-    <>
-      <h2> Timeline</h2>{' '}
+  let timelineHeader;
+
+  if (chunkedList.length) {
+    timelineHeader = (
       <h3>
-        {new Date(chunkedList[display][0].props.date).toDateString()}{' '}
+        {new Date(
+          chunkedList[display][0].props.date
+        ).toDateString() || null}
         --
         {new Date(
           chunkedList[display][
             chunkedList[display].length - 1
           ].props.date
-        ).toDateString()}{' '}
+        ).toDateString() || null}
       </h3>
+    );
+  }
+
+  return (
+    <>
+      <h2> Timeline</h2>{' '}
+      {timelineHeader}
       {isLoading ? 'loading...' : chunkedList[display]}
       {!isLoading ? (
         <>
-          <button onClick={() => setDisplay(display + 1)}
-           disabled = {display=== chunkedList.length-1} >
+          <button
+            onClick={() => setDisplay(display + 1)}
+            disabled={display === chunkedList.length - 1}
+          >
             Next
           </button>
-          <button onClick={() => setDisplay(display - 1)}
-          disabled = {!display}>
+          <button
+            onClick={() => setDisplay(display - 1)}
+            disabled={!display}
+          >
             Prev
           </button>
           <button onClick={() => setDisplay(0)}> Reset</button>

@@ -25,7 +25,7 @@ import { GlobalStyle } from './GlobalStyles';
 const App = () => {
   const [userId, setUserId] = useState(null);
   const [firstName, setFirstName] = useState(null);
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState(['This an an example entry']);
 
   useEffect(() => {
     if (!TokenService.getAuthToken()) return;
