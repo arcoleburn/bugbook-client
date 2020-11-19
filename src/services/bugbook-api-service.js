@@ -3,7 +3,6 @@ import TokenService from './token.service';
 
 const ApiService = {
   getEntries() {
-    console.log(`get entries ran`);
     return fetch(`${config.API_ENDPOINT}/entries/`, {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -11,19 +10,14 @@ const ApiService = {
     }).then((res) => res.json().then((data) => data));
   },
   getObservations() {
-    console.log('get observations ran');
-    return fetch(
-      `${config.API_ENDPOINT}/observations/`, {
-        headers: {
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      }
-    ).then((res) => res.json().then((data) => data));
+    return fetch(`${config.API_ENDPOINT}/observations/`, {
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => res.json().then((data) => data));
   },
 
-  postEntry( data) {
-    console.log('post entry ran');
-    console.log('data sent: ', JSON.stringify(data));
+  postEntry(data) {
     return fetch(`${config.API_ENDPOINT}/entries/`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -33,11 +27,9 @@ const ApiService = {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log('success', data));
   },
 
   postObservation(data) {
-    console.log('post obs ran');
     return fetch(`${config.API_ENDPOINT}/observations/`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -46,8 +38,41 @@ const ApiService = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log('res from post obs', res);
+        res.json();
+      })
       .then((data) => console.log('success', data));
+  },
+  delEntry(id) {
+    return fetch(`${config.API_ENDPOINT}/entries/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ entry_id: id }),
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    });
+  },
+  delObs(id) {
+    return fetch(`${config.API_ENDPOINT}/observations/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    });
+  },
+  editEntry(id, entry) {
+    return fetch(`${config.API_ENDPOINT}/entries/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(entry),
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+      .then((res) => res.json())
   },
 };
 

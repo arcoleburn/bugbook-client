@@ -7,7 +7,6 @@ import {useState} from 'react'
 const DailySummary = (props) => {
   
     const [expanded, setExpand] = useState(false)
-    
     const expandEntry = () =>{
         setExpand(!expanded)
     }
@@ -19,7 +18,7 @@ const DailySummary = (props) => {
         <div>Hours: {props.hours}</div>
         <div>Rating: {props.rating}</div>
         </Content>
-        {expanded? <DailySummaryExp entry={props.entry}/> : null}
+        {expanded? <DailySummaryExp id={props.id} entries={props.entries} entry={props.entry} date={props.date} setEntries={props.setEntries}/> : null}
       </Wrapper>
    
   );

@@ -31,12 +31,19 @@ const Observations = (props) => {
      observation: input
    }
    //needs to make a post call and then refetch
-    ApiService.postObservation(userId, newObs)
+    ApiService.postObservation(newObs)
     setObs([...obs, newObs])
    
   }
-
-  const list = obs.map((o) => <li key={o.id}>{o.observation}</li>);
+const handleDel =(id)=>{
+  console.log('del')
+  ApiService.delObs(id)
+  let indexDel = obs.find(o=>o.id ==id)
+  setObs(obs.filter(o=>o !== indexDel))
+}
+  const list = obs.map((o) =><li key={o.id}>{o.observation} <button key={o.id+1} onClick={()=> handleDel(o.id)}> X </button></li>);
+ console.log('obs', obs)
+  console.log('list', list)
   return (
     <>
       <h2> The bug {props.firstName || 'John'} :</h2>

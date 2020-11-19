@@ -1,12 +1,14 @@
-
+import { Wrapper } from './Date.styles';
 
 const Today = () => {
+  const now = new Date();
 
-    const now= new Date()
-
-
-    return(
-        now.toDateString()
-    )    
-}
-export default Today
+  return (
+    <Wrapper>
+      <div></div>
+      {now.toDateString()}
+      <div></div>
+    </Wrapper>
+  );
+};
+export default Today;

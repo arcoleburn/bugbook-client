@@ -1,49 +1,51 @@
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import * as am4plugins_wordCloud from '@amcharts/amcharts4/plugins/wordCloud'
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { render } from '@testing-library/react'
+import WordCloud from './WordClouds'
+import Chart from './Charts'
 
 const Vizualize=(props)=>{
 
-    
-    const plus2=props.entries.filter(entry=>entry.day_rating==2||1||0||-1||-2).map((x)=>x.journal_entry)
-    console.log(plus2)
-    const chart = useRef(null)
-console.log('sliced', plus2.slice(" "))
-const words = plus2.join(" ").toLowerCase()
-console.log('words', words)    
-let uniqueWords = [...new Set(plus2.join(" ").toLowerCase().split(" "))]
-
-    let cloudData=uniqueWords.map(x=> {return {text:x, value:0 }})
-
-    for(let word in words){
-        const index = cloudData.findIndex(x=>x.text===word)
-        console.log('index', index||null
-        )
-       // cloudData[index].value +     
-    }
-    
-    console.log('cloud data', cloudData) 
-
-    useLayoutEffect(()=>{
-        let x = am4core.create('chartdiv', am4plugins_wordCloud.WordCloud)
-        let series = x.series.push(new am4plugins_wordCloud.WordCloudSeries())
-        series.text=plus2.join(" ")
-        series.minWordLength=3
-        chart.current = x
-        return ()=> x.dispose()
-    }, [])
+    const [display, setDisplay] = useState('intro')
 
 
-    console.log('viz', props)
-    const mins2=props.entries.filter(entry=>entry.day_rating==-2)
-
-
-
-    console.log('plus twos', plus2)
-    return(<><h1>hi</h1>
+    const renderIntro = () => {
         
-        <div id='chartdiv'></div></>)
+    return (<>
+        <h3> Welcome to Vizualize!</h3>
+        <p>Select a button below to view. Word clouds will shouw you patterns from your journal entires, while graphs will show you correlations with your daily score.</p>
+        <button onClick={()=>setDisplay('clouds')}> WordClouds</button>
+        <button onClick={()=>setDisplay('graphs')}>Graphs</button> 
+    </>)
+    }
+
+    //word cloud data
+    const positiveDays=props.entries.filter(entry=>entry.day_rating==2||1).map((x)=>x.journal_entry)
+    const positiveDaysWords = positiveDays.join(' ').toLowerCase()
+    const negativeDays=props.entries.filter(entry=>entry.day_rating==-2||-1).map((x)=>x.journal_entry)
+    const negativeDaysWords = negativeDays.join(' ').toLowerCase()
+
+
+
+    //chart data 
+
+    const data = props.entries.map(entry => {return {date: entry.date_created, score: entry.day_rating, hours: entry.deep_hours, day:new Date(entry.date_created).getDay()}})
+
+    console.log('chart data', data)
+  
+
+
+
+
+    //console.log('plus twos', plus2)
+    return(<>
+        {display==='intro' ? renderIntro() :
+        display==='clouds' ? <WordCloud history={props.history} positive = {positiveDaysWords} negative={'negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative '}/>:
+        display==='graphs'? <Chart data={data}/> : 'graphs  soon'}
+        <button onClick={()=>setDisplay('intro')}> Go Back</button>
+        </>)
 }
 
 export default Vizualize

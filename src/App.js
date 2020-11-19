@@ -4,7 +4,6 @@ import NewEntry from './Components/NewEntryForm';
 import Timeline from './Components/Timeline';
 import Vizualize from './Components/Vizualize';
 
-import DailySummaryExp from './Components/DailySummaryExpanded';
 import Observations from './Components/Observations/ObservationsPage';
 import ObservationsForm from './Components/Observations/ObservationsForm';
 import LoginPage from '../src/Routes/LoginPage';
@@ -15,14 +14,13 @@ import PublicRoute from '../src/Components/Utils/PublicRoute';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
 } from 'react-router-dom';
 
 import jwt from 'jsonwebtoken';
 import TokenService from '../src/services/token.service';
-import DailySummary from './Components/DailySummary';
 import RegistrationPage from './Components/RegistrationPage';
 import ApiService from './services/bugbook-api-service';
+import { GlobalStyle } from './GlobalStyles';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
@@ -35,16 +33,27 @@ const App = () => {
       setUserId(jwt.decode(TokenService.getAuthToken()).userId);
       setFirstName(jwt.decode(TokenService.getAuthToken()).firstName);
     }
-    ApiService.getEntries().then((resData) => setEntries(resData));
-  }, []);
+    ApiService.getEntries().then((resData) =>
+      setEntries(resData.sort((a,b)=>Date.parse(b.date_created)-Date.parse(a.date_created)))
+    );
+  }, [userId])
+  
+  // useEffect(()=> {
+  //   console.log('use effect for today state ran');
+  //   console.log('length',entries.filter((e) => e.date_created.startsWith(todayDate).length === 1).length === 1 )
+  //   if (entries.filter((e) => e.date_created.startsWith(todayDate).length === 1).length === 1) {
+  //     setToday(true)
+  //   }
+  // }, [entries]);
 
-  // if(TokenService.getAuthToken()){
-  //   setUserId()//jwt.decode(TokenService.getAuthToken()).userId)
-  // }
   return (
     <>
       <Router>
-        <Header setUserId={setUserId} setFirstName={setFirstName} />
+        <Header
+          setUserId={setUserId}
+          setFirstName={setFirstName}
+          setEntries={setEntries}
+        />
         <Switch>
           <PrivateRoute
             exact
@@ -119,7 +128,20 @@ const App = () => {
               <Vizualize {...props} entries={entries} />
             )}
           />
+          <PrivateRoute
+            exact
+            path="/edit"
+            component={(props) => (
+              <NewEntry
+                {...props}
+                entries={entries}
+                setEntries={setEntries}
+                edit={true}
+              />
+            )}
+          />
         </Switch>
+        <GlobalStyle/>
       </Router>
     </>
   );
