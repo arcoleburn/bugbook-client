@@ -12,4 +12,8 @@ export const Content = styled.div`
 display:flex;
 flex-direction: column;
 text-align: center;
+
+a{
+    font-family: var(--fontHandwritten);
+}
 `

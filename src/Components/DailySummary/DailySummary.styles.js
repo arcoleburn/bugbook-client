@@ -6,6 +6,10 @@ display: flex;
 flex-direction: column;
 
 border: 1px solid black;
+
+:hover{
+    background-color: var(--seaBlue);
+}
 `
 
 export const Content = styled.div`

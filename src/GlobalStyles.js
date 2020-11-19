@@ -1,6 +1,10 @@
-import {createGlobalStyle} from "styled-components"
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&display=swap');
+
+
 :root{
 
 /* font sizes     */
@@ -8,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
 --fontBig: 1.5rem;
 --fontMed: 1.2rem;
 --fontSmall: 1rem;
+
+--fontSerif:'Nanum Myeongjo' ;
+--fontHandwritten: 'Nanum Pen Script', cursive;
+
 
 /* colors from coolors pallete */
 --chocolateBrown: #1F1300;
@@ -26,4 +34,4 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
-`
+`;

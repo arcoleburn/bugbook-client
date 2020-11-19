@@ -13,7 +13,7 @@ const DailySummary = (props) => {
 
   return (
       <Wrapper onClick={expandEntry}>
-          <Content>
+          <Content expanded={expanded}>
         <div>{props.date}</div>
         <div>Hours: {props.hours}</div>
         <div>Rating: {props.rating}</div>

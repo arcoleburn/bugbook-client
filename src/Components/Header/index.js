@@ -17,10 +17,12 @@ const Header = (props) => {
 
   const renderLogoutLink = () => {
     return (
+      <LinkWrapper>
       <Link onClick={handleLogoutClick} to="/">
         {' '}
         Logout
       </Link>
+      </LinkWrapper>
     );
   };
 
@@ -32,12 +34,11 @@ const Header = (props) => {
       </LinkWrapper>
     );
   };
-
   return (
     <HeaderWrapper>
-      <div>
+      <LinkWrapper>
         <span
-          style={{ marginRight: '35px' }}
+          style={{ marginRight: '35px'}}
           className="fa-layers fa-fw"
         >
           <FontAwesomeIcon
@@ -46,12 +47,12 @@ const Header = (props) => {
             icon={faBug}
             style={{ marginLeft: '11px', marginBottom: '5px' }}
           />
-          <FontAwesomeIcon icon={faSearch} size="3x" />
+          <FontAwesomeIcon icon={faSearch} size="3x"  />
         </span>
        
-        <Link to="/">BugBook</Link>
-      </div>
-      <h2>{props.children}</h2>
+        <Link to="/"><h1>BugBook</h1></Link>
+      </LinkWrapper>
+      
       {TokenService.hasAuthToken()
         ? renderLogoutLink()
         : renderLoginLink()}

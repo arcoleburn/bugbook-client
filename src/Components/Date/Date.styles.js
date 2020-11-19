@@ -7,4 +7,5 @@ text-align: center;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+font-family: var(--fontHandwritten)
 ` 
