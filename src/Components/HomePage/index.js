@@ -11,7 +11,7 @@ const Home = (props) => {
       <div></div>
       <Content>
         
-      {/* <Header setUserId = {props.setUserId} setFirstName={props.setFirstName} /> */}
+      {/* <Header setUserId = {props.setUserId} setFirstName={props.setFirstName}/> */}
       <Date />
       <Link to='/new-entry'>Today's Entry</Link>
         <Link to ='/timeline'>Timeline</Link>
