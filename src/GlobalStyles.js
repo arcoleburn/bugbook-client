@@ -30,8 +30,11 @@ export const GlobalStyle = createGlobalStyle`
 
 *{
     box-sizing: border-box;
+    background-color: var(---ivoryPaper)
 }
 
-
+body{
+    background-color: var(---ivoryPaper)
+}
 
 `;
