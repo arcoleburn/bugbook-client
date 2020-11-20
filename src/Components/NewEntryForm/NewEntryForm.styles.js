@@ -11,6 +11,7 @@ padding-bottom: 100%;
 
     select, input, textarea{
         margin: 10px 0;
+        border-radius: 10px;
     }
 
     label{

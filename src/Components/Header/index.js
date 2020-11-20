@@ -5,16 +5,16 @@ import {
   BorderBar,
   HeaderWrapper,
   LinkWrapper,
-  Wrapper,
+  
 } from './Header.styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBug,
   faSearch,
-  faBookOpen,
+  
 } from '@fortawesome/free-solid-svg-icons';
-import { Border } from 'victory';
+
 
 const Header = (props) => {
   const handleLogoutClick = () => {

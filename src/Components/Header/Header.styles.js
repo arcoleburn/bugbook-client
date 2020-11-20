@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const HeaderWrapper = styled.nav`
-background-color: #8a7968;
+background-color: var(--coffeeBrown);
+
 
 display:flex;
 flex-direction: row;
