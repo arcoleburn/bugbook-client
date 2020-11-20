@@ -13,14 +13,21 @@ font-family: var(--fontSerif);
 font-weight:800;
 align-items:center;
 border-radius: 14px;
+:hover{
+        color: var(--blueInk)
+    }
 
 h1{
     font-size: var(--fontSuperBig);
     margin: 0;
-}
+} 
 a{
     text-decoration: none;
-    color: var(--chocolateBrown)
+    color: var(--chocolateBrown);
+    
+    :hover{
+        color: var(--blueInk)
+    }
 }
 `
 

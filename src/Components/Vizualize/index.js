@@ -15,7 +15,7 @@ const Vizualize = (props) => {
       <Wrapper>
         <h2> Vizualize: </h2>
         <p>
-          Here you can select different vizulizations of your journal
+          Here you can select different vizualizations of your journal
           data to help find patterns.
         </p>
         <p>

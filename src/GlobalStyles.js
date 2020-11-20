@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 --fontMed: 1.2rem;
 --fontSmall: 1rem;
 
---fontSerif:'Nanum Myeongjo' ;
---fontHandwritten: 'Nanum Pen Script', cursive;
+--fontSerif:'Nanum Myeongjo', serif ;
+--fontHandwritten: 'Nanum Pen Script', serif;
 
 
 /* colors from coolors pallete */
