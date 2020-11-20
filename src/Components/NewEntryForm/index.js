@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import Header from '../Header';
 import DatePage from '../Date';
-import { EntryForm } from './NewEntryForm.styles';
+import { EntryForm, Wrapper } from './NewEntryForm.styles';
 import ApiService from '../../services/bugbook-api-service';
 import jwt from 'jsonwebtoken';
 import TokenService from '../../services/token.service';
@@ -125,7 +125,7 @@ const NewEntry = (props) => {
   //   currentEntry = props.entries.filter(e=>e.date_created.startsWith())
   // }
   return (
-    <>
+    <Wrapper>
       <DatePage />
       {today && !props.edit ? (
         <p>
@@ -168,12 +168,13 @@ const NewEntry = (props) => {
             onChange={onChange}
             defaultValue={entry}
           ></textarea>
+          
           <button onClick={props.edit ? handleEdit : handleSubmit}>
             {props.edit ? 'Edit' : 'Submit'}
           </button>
         </EntryForm>
       )}
-    </>
+    </Wrapper>
   );
 };
 

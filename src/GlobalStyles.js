@@ -30,8 +30,12 @@ export const GlobalStyle = createGlobalStyle`
 
 *{
     box-sizing: border-box;
+
+body{
+    background-color: var(--ivoryPaper)
 }
 
-
-
+button, input, select, textarea{ 
+    border-radius: 5px;
+}
 `;

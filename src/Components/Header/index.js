@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token.service';
 import userInfoService from '../../services/user-info-service';
-import { HeaderWrapper, LinkWrapper, Wrapper } from './Header.styles';
+import {
+  BorderBar,
+  HeaderWrapper,
+  LinkWrapper,
+  
+} from './Header.styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBug, faSearch, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBug,
+  faSearch,
+  
+} from '@fortawesome/free-solid-svg-icons';
+
 
 const Header = (props) => {
   const handleLogoutClick = () => {
@@ -18,10 +28,10 @@ const Header = (props) => {
   const renderLogoutLink = () => {
     return (
       <LinkWrapper>
-      <Link onClick={handleLogoutClick} to="/">
-        {' '}
-        Logout
-      </Link>
+        <Link onClick={handleLogoutClick} to="/">
+          {' '}
+          Logout
+        </Link>
       </LinkWrapper>
     );
   };
@@ -35,28 +45,34 @@ const Header = (props) => {
     );
   };
   return (
+    <>
     <HeaderWrapper>
       <LinkWrapper>
         <span
-          style={{ marginRight: '35px'}}
+          style={{ marginRight: '35px' }}
           className="fa-layers fa-fw"
         >
           <FontAwesomeIcon
-          // className='fa-rotate-180'
-          transform="rotate--30"
+            // className='fa-rotate-180'
+            transform="rotate--30"
             icon={faBug}
             style={{ marginLeft: '11px', marginBottom: '5px' }}
           />
-          <FontAwesomeIcon icon={faSearch} size="3x"  />
+          <FontAwesomeIcon icon={faSearch} size="3x" />
         </span>
-       
-        <Link to="/"><h1>BugBook</h1></Link>
+
+        <Link to="/">
+          <h1>BugBook</h1>
+        </Link>
       </LinkWrapper>
-      
+
       {TokenService.hasAuthToken()
         ? renderLogoutLink()
         : renderLoginLink()}
+      
     </HeaderWrapper>
+    <BorderBar></BorderBar>
+    </>
   );
 };
 

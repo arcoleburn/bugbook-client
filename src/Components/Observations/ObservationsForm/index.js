@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { ObsFormWrapper } from "./ObsForm.styles"
 
 const ObsForm = (props) => {
 console.log('obs form props', props)
@@ -12,11 +13,11 @@ const onSubmitForm = (e) => {
     setInput('')
 }
     return(
-        <form >
+        <ObsFormWrapper >
             <label htmlFor='entry'>The bug {props.firstName || 'John'}...</label>
             <input value={input} onChange={onChange} type='text' id='entry'/>
-            <button onClick={onSubmitForm}> Add Observation</button>
-        </form>
+            <button onClick={onSubmitForm}> Add</button>
+        </ObsFormWrapper>
     )
 }
 

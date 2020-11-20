@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const HeaderWrapper = styled.nav`
-background-color: #8a7968;
+background-color: var(--coffeeBrown);
+
 
 display:flex;
 flex-direction: row;
@@ -11,6 +12,7 @@ padding: 20px;
 font-family: var(--fontSerif);
 font-weight:800;
 align-items:center;
+border-radius: 14px;
 
 h1{
     font-size: var(--fontSuperBig);
@@ -30,5 +32,10 @@ font-family: var(--fontSerif);
 align-items: center;
 
 `
+const BorderBar=styled.div`
+width:100%; 
+border-bottom:10px;
+box-shadow: 12px, 12px, 2px, 4px, rgba(0,0,0,1);
+`
 
-export {HeaderWrapper, LinkWrapper}
+export {HeaderWrapper, LinkWrapper, BorderBar}

@@ -1,12 +1,13 @@
 import * as V from 'victory';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory'
+import { ChartWrapper } from './Charts.styles';
 
 
 const Chart = (props) => {
   const { data } = props;
 console.log(data)
   const byDayOfWeek = [
-      { day: 0, averageHours: 0, averageRating: 0 },
+      { day: 0, averageHours: 0, averageRating: 0, fill: "red" },
       { day: 1, averageHours: 0, averageRating: 0 },
       { day: 2, averageHours: 0, averageRating: 0 },
       { day: 3, averageHours: 0, averageRating: 0 },
@@ -28,12 +29,12 @@ console.log(data)
 const ratingData = byDayOfWeek.map(x=>{ return {day: x.day+1, rating: x.averageRating}})
 console.log(ratingData)
   return (
-      <>
-      <h2> Daily Rating by Day of the Week</h2>
-      <VictoryChart domainPadding={20}>
+      <ChartWrapper>
+      <h3> Daily Rating by Day of the Week</h3>
+      <VictoryChart id='chart' domainPadding={20} style={{minHeight: '350px'}}>
           <VictoryAxis
           style={{
-              tickLabels: {fill: '#FF0000', fontSize: 20, padding: 120}
+              tickLabels: {fill: '#000022', fontSize: 20, padding: 120}
           }} 
           tickValues={[1,2,3,4,5,6,7]}
           tickFormat= {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}/> 
@@ -43,7 +44,7 @@ console.log(ratingData)
         y="rating"
         />
         </VictoryChart>
-      </>
+      </ChartWrapper>
   )
 };
 

@@ -6,6 +6,7 @@ import Header from '../../Header';
 import ObservationsForm from '../ObservationsForm'
 import jwt from 'jsonwebtoken'
 import userInfoService from '../../../services/user-info-service';
+import { Wrapper } from './Observations.styles';
 
 
 const Observations = (props) => {
@@ -42,14 +43,13 @@ const handleDel =(id)=>{
   setObs(obs.filter(o=>o !== indexDel))
 }
   const list = obs.map((o) =><li key={o.id}>{o.observation} <button key={o.id+1} onClick={()=> handleDel(o.id)}> X </button></li>);
- console.log('obs', obs)
-  console.log('list', list)
+  
   return (
-    <>
+    <Wrapper>
       <h2> The bug {props.firstName || 'John'} :</h2>
       <ul>{list}</ul>
       <ObservationsForm firstName={props.firstName} onSubmit={handleObsAdded}/>
-    </>
+    </Wrapper>
   );
 };
 

@@ -15,5 +15,12 @@ text-align: center;
 
 a{
     font-family: var(--fontHandwritten);
+    font-size: var(--fontBig);
+    text-decoration: none;
+    color: var(--chocolateBrown);
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 30px;
 }
 `
