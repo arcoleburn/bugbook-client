@@ -42,15 +42,18 @@ const NewEntry = (props) => {
   }
 
   useEffect(() => {
-    useEffectCount += 1;
     // console.log(
     //   '??',
     //   entries.filter((e) => e.date_created.startsWith(todayDate))
     // );
-    console.log('entries', entries)
+    console.log(todayDate);
+    console.log();
     if (
-      entries.filter((e) => e.date_created.startsWith(todayDate))
-        .length > 0
+      entries.filter((e) => {
+        console.log(todayDate);
+        console.log(e.date_created);
+        return e.date_created.startsWith(todayDate).length > 0;
+      })
     ) {
       setToday(true);
     } else {
@@ -105,9 +108,9 @@ const NewEntry = (props) => {
       };
       console.log('current id', currentEntry.id);
       ApiService.editEntry(currentEntry.id, newEntry).then((x) => {
-        console.log('edited', x)
-        let newEntries = [...entries]
-        newEntries.splice(0,1,x)
+        console.log('edited', x);
+        let newEntries = [...entries];
+        newEntries.splice(0, 1, x);
         props.setEntries(newEntries);
         props.history.push('./timeline');
       });
@@ -168,7 +171,7 @@ const NewEntry = (props) => {
             onChange={onChange}
             defaultValue={entry}
           ></textarea>
-          
+
           <button onClick={props.edit ? handleEdit : handleSubmit}>
             {props.edit ? 'Edit' : 'Submit'}
           </button>

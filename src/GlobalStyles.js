@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 --fontMed: 1.2rem;
 --fontSmall: 1rem;
 
---fontSerif:'Nanum Myeongjo' ;
---fontHandwritten: 'Nanum Pen Script', cursive;
+--fontSerif:'Nanum Myeongjo', serif ;
+--fontHandwritten: 'Nanum Pen Script', serif;
 
 
 /* colors from coolors pallete */
@@ -25,14 +25,15 @@ export const GlobalStyle = createGlobalStyle`
 --darkPurple: #381d2a;
 --white: #fff;
 --blueInk: #000022;
-
 }
+
 
 *{
     box-sizing: border-box;
+}
 
 body{
-    background-color: var(--ivoryPaper)
+    background-color: var(--ivoryPaper);
 }
 
 button, input, select, textarea{ 
