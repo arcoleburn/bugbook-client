@@ -25,14 +25,15 @@ export const GlobalStyle = createGlobalStyle`
 --darkPurple: #381d2a;
 --white: #fff;
 --blueInk: #000022;
-
 }
+
 
 *{
     box-sizing: border-box;
+}
 
 body{
-    background-color: var(--ivoryPaper)
+    background-color: var(--ivoryPaper);
 }
 
 button, input, select, textarea{ 

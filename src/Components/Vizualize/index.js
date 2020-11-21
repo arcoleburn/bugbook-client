@@ -1,9 +1,6 @@
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
-import * as am4plugins_wordCloud from '@amcharts/amcharts4/plugins/wordCloud';
-import { useLayoutEffect, useRef, useState } from 'react';
-import { render } from '@testing-library/react';
-import WordCloud from './WordClouds';
+import WordCloud from 'react-d3-cloud'
+// import WordCloud from './WordClouds';
+import {useState} from 'react';
 import Chart from './Charts';
 import { Wrapper, ControlButtons } from './Vizualize.styles';
 
@@ -45,6 +42,38 @@ const Vizualize = (props) => {
     .map((x) => x.journal_entry);
   const negativeDaysWords = negativeDays.join(' ').toLowerCase();
 
+
+  //attempt to map word data 
+    //find unique words
+    const posWordsArr = positiveDaysWords.split(' ')
+    console.log('pos days', posWordsArr)
+  function unique(value, index, self){
+    return self.indexOf(value) === index
+  }
+    const uniquePosWords= posWordsArr.filter(unique) 
+    console.log(uniquePosWords)
+
+    const posWordsData = uniquePosWords.map(word=> {return {text: word, value: 0}})
+    console.log('data before', posWordsData)
+
+  posWordsArr.forEach(word=> {
+    //find matching object in posWords data
+    let index = posWordsData.findIndex(x=> x.text == word)
+
+    //plus 1 to it's value 
+    posWordsData[index].value += 1 
+    
+  })
+console.log('data after', posWordsData)
+    //count instances of each word
+
+
+const cloud = <WordCloud data={posWordsData} />
+
+
+
+
+
   //chart data
 
   const data = props.entries.map((entry) => {
@@ -58,7 +87,6 @@ const Vizualize = (props) => {
 
   console.log('chart data', data);
 
-  //console.log('plus twos', plus2)
   return (
     <Wrapper>
       {display === 'intro' ? (
@@ -67,9 +95,6 @@ const Vizualize = (props) => {
         <WordCloud
           history={props.history}
           positive={positiveDaysWords}
-          negative={
-            'negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative negative '
-          }
         />
       ) : display === 'graphs' ? (
         <Chart data={data} />
@@ -82,8 +107,15 @@ const Vizualize = (props) => {
           Vizualize Home
         </button>
       ) : null}
+
+      {/* {cloud} */}
     </Wrapper>
+   
+  
   );
 };
 
 export default Vizualize;
+
+
+ 
