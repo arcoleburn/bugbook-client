@@ -2,7 +2,10 @@
 
 import { useState, useReducer } from 'react';
 import AuthApiService from '../../services/auth-api-service';
-
+import {
+  Wrapper,
+  EntryForm,
+} from '../NewEntryForm/NewEntryForm.styles';
 const initialFormState = {
   regUsername: '',
   regPassword: '',
@@ -26,6 +29,7 @@ const RegistrationForm = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(null);
     const {
       regUsername,
       regPassword,
@@ -33,7 +37,7 @@ const RegistrationForm = (props) => {
       email,
       firstName,
     } = state;
-    setError(null);
+
     const newUser = {
       username: regUsername,
       password: regPassword,
@@ -43,21 +47,27 @@ const RegistrationForm = (props) => {
     console.log(newUser);
 
     AuthApiService.postUser(newUser)
-      .then((user) => {
+      .then((res) => {
+        if (!res.ok) {
+          //this error response is not working
+          return res.json().then((error) => Promise.reject(error));
+        }
+
         regUsername.value = '';
         regPassword.value = '';
         confrimPass.value = '';
         email.value = '';
         firstName.value = '';
+        props.onRegistrationSuccess();
       })
-      .then(props.onRegistrationSuccess())
       .catch((res) => {
+        'err caught';
         setError({ error: res.error });
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>{error && <p>{error}</p>}</div>
+    <EntryForm onSubmit={handleSubmit}>
+      <div>{error && <p>{error.error}</p>}</div>
       <label htmlFor="regUsername"> Username: </label>
       <input
         id="regUsername"
@@ -85,7 +95,7 @@ const RegistrationForm = (props) => {
         required
         onChange={onChange}
       />
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email:</label>
       <input
         type="text"
         id="email"
@@ -100,7 +110,7 @@ const RegistrationForm = (props) => {
         onChange={onChange}
       />
       <button type="submit"> Register </button>
-    </form>
+    </EntryForm>
   );
 };
 

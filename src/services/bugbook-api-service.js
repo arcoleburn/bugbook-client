@@ -7,7 +7,9 @@ const ApiService = {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => res.json().then((data) => data));
+    }).then((res) => res.json().then((data) => {
+      console.log('data from fetch', data)
+      return data}));
   },
   getObservations() {
     return fetch(`${config.API_ENDPOINT}/observations/`, {

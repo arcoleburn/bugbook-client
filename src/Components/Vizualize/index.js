@@ -5,6 +5,7 @@ import Chart from './Charts';
 import { Wrapper, ControlButtons } from './Vizualize.styles';
 
 const Vizualize = (props) => {
+  console.log('viz props', props)
   const [display, setDisplay] = useState('intro');
 
   const renderIntro = () => {
@@ -16,22 +17,23 @@ const Vizualize = (props) => {
           data to help find patterns.
         </p>
         <p>
-          Select a button below to view. Word clouds will show you
+          Once you've made a couple of journal entries, select a button below to view. Word clouds will show you
           patterns from your positive journal entires, while graphs
           will show you your average score by day of the week.
         </p>
         <p>We're adding more vizualizations, so check back soon!</p>
         <ControlButtons>
-          <button onClick={() => setDisplay('clouds')}>
+          <button disabled={props.entries.length == 0 ? true : false} onClick={() => setDisplay('clouds')}>
             {' '}
             WordClouds
           </button>
-          <button onClick={() => setDisplay('graphs')}>Graphs</button>
+          <button disabled={props.entries.length == 0 ? true : false} onClick={() => setDisplay('graphs')}>Graphs</button>
         </ControlButtons>
       </Wrapper>
     );
   };
 
+  
   //word cloud data
   const positiveDays = props.entries
     .filter((entry) => entry.day_rating == 2 || 1)
@@ -66,7 +68,7 @@ const Vizualize = (props) => {
   })
 console.log('data after', posWordsData)
     //count instances of each word
-
+ 
 
 const cloud = <WordCloud data={posWordsData} />
 

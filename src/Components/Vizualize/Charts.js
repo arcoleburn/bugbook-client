@@ -15,7 +15,7 @@ console.log(data)
       { day: 5, averageHours: 0, averageRating: 0 },
       { day: 6, averageHours: 0, averageRating: 0 }];
 
-    byDayOfWeek.forEach(day=>{
+    if(data) {byDayOfWeek.forEach(day=>{
         let index= byDayOfWeek.indexOf(day)
         let filtered = data.filter(x=>x.day===day.day)
         let hours = filtered.map(x=>x.hours)
@@ -24,6 +24,7 @@ console.log(data)
         byDayOfWeek[index].averageHours = hours.reduce((a,b)=> a+b)/hours.length 
         byDayOfWeek[index].averageRating = rating.reduce((a,b)=>a+b)/rating.length
     })
+  }
 
     console.log('mondays', data.filter(day=> day.day==1))
 const ratingData = byDayOfWeek.map(x=>{ return {day: x.day+1, rating: x.averageRating}})

@@ -1,0 +1,29 @@
+insert into observations (user_id, date_created, observation)
+
+values
+
+(DEMO_ID, '2020-11-21', 'enjoys competing.'),
+
+(DEMO_ID, '2020-11-20', 'nerds out over statistics.'),
+(DEMO_ID, '2020-11-17', 'rebels against tasks he thinks are menial.'),
+
+(DEMO_ID, '2020-11-10', 'won't back down from a challenge.'),
+
+(DEMO_ID, '2020-11-8', 'seems to be afraid of failure'),
+
+(DEMO_ID, '2020-11-4', 'cares deeply about others.'),
+
+(DEMO_ID, '2020-11-13', 'isn't easily satisfied, for better or worse.');
+
+
+insert into journal_data (user_id, date_created, day_rating, deep_hours, journal_entry)
+
+values
+
+(DEMO_ID, '2020-11-21', 2, 4, 'Today was fantastic. I managed to get up early and had a great workout before sitting down to write for couple hours. Went to work feeling like I'd already won the day. Had a couple good meetings. Gwen and I had a nice dinner at a new restaurant.'),
+
+(DEMO_ID, '2020-11-21', 1, 2, 'Not a bad day. Didn't really feel into it during my workout, but got it done. JS got everyone a little too stressed out about the deadline for Project XYZ, but I'm confident it will be fine.'),
+
+(DEMO_ID, '2020-11-21', 2, 5, 'Really got in a grove today. Got a stellar amount of writing done. and had a major breakthrough on project xyz. Gwen and i went for a run and cooked a great spaghetti dinner.'),
+
+(DEMO_ID, '2020-11-21', -2, 0, 'rough day. completely slept through my alarm. rushed out, managed to get to work only about half an hour late. couldnt shake the funk all day. let it carry over at home too and just just spent the whole evening mindlessly watching youtube.')

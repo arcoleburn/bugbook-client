@@ -16,7 +16,7 @@ const onSubmitForm = (e) => {
         <ObsFormWrapper >
             <label htmlFor='entry'>The bug {props.firstName || 'John'}...</label>
             <input value={input} onChange={onChange} type='text' id='entry'/>
-            <button onClick={onSubmitForm}> Add</button>
+            <button disabled={!input} onClick={onSubmitForm}> Add</button>
         </ObsFormWrapper>
     )
 }

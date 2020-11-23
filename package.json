@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",
+    "date-fns": "^2.16.1",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.1",
     "react-d3-cloud": "^0.7.0",

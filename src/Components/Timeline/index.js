@@ -7,6 +7,7 @@ import TokenService from '../../services/token.service';
 import userInfoService from '../../services/user-info-service';
 import chunk from '../Utils/helpers';
 import { ControlButtons, LabelBar, Wrapper } from './Timeline.styles';
+import { Link } from 'react-router-dom';
 
 const Timeline = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,6 +53,7 @@ const Timeline = (props) => {
     <Wrapper>
       <h2> Timeline</h2>{' '}
       <h3>
+<<<<<<< HEAD
         {new Date(chunkedList[display][0].props.date).toDateString()}{' '}
         - {' '}
         {new Date(
@@ -59,18 +61,36 @@ const Timeline = (props) => {
             chunkedList[display].length - 1
           ].props.date
         ).toDateString() || null}
+=======
+        {entries.length > 0 &&
+          new Date(
+            chunkedList[display][0].props.date
+          ).toDateString()}{' '}
+        {entries.length == 0
+          ? 'You dont have any entries yet! Get started with todays entry.'
+          : '-'}{' '}
+        {entries.length > 0 &&
+          new Date(
+            chunkedList[display][
+              chunkedList[display].length - 1
+            ].props.date
+          ).toDateString()}{' '}
+>>>>>>> master
       </h3>
+      <Link to = {'/new-entry'}>Today's Entry</Link>
       <LabelBar>
-      <div>Date:</div>
-      <div>Hours:</div>
-      <div>Rating:</div>
+        <div>Date:</div>
+        <div>Hours:</div>
+        <div>Rating:</div>
       </LabelBar>
       {isLoading ? 'loading...' : chunkedList[display]}
       {!isLoading ? (
         <ControlButtons>
-          <div /> 
-          <button onClick={() => setDisplay(display + 1)}
-           disabled = {display=== chunkedList.length-1} >
+          <div />
+          <button
+            onClick={() => setDisplay(display + 1)}
+            disabled={display === chunkedList.length - 1}
+          >
             Next
           </button>
           <button
