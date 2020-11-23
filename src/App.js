@@ -33,9 +33,9 @@ const App = () => {
       setUserId(jwt.decode(TokenService.getAuthToken()).userId);
       setFirstName(jwt.decode(TokenService.getAuthToken()).firstName);
     }
-    ApiService.getEntries().then((resData) =>
+    ApiService.getEntries().then((resData) =>{
       setEntries(resData.sort((a,b)=>Date.parse(b.date_created)-Date.parse(a.date_created)))
-    );
+    });
   }, [userId])
   
   // useEffect(()=> {

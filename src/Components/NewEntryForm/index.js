@@ -1,3 +1,5 @@
+//FIX THE DATES BS
+
 import React, { useReducer, useState, useEffect } from 'react';
 import Header from '../Header';
 import DatePage from '../Date';
@@ -6,6 +8,7 @@ import ApiService from '../../services/bugbook-api-service';
 import jwt from 'jsonwebtoken';
 import TokenService from '../../services/token.service';
 import userInfoService from '../../services/user-info-service';
+import { compareAsc, isSameDay } from 'date-fns';
 
 const initialFormState = {
   rating: 0,
@@ -20,12 +23,10 @@ function reducer(state, { field, value }) {
   };
 }
 
-const todayDate = new Date().toDateString();
-let useEffectCount = 0;
+const todayDate = new Date();
 
 const NewEntry = (props) => {
-  //console.log('entry props', props);
-
+console.log('props entry', props)
   const { entries } = props;
 
   const [today, setToday] = useState(false);
@@ -46,22 +47,20 @@ const NewEntry = (props) => {
     //   '??',
     //   entries.filter((e) => e.date_created.startsWith(todayDate))
     // );
-    console.log(todayDate);
-    console.log();
     if (
-      entries.filter((e) => {
-        console.log(todayDate);
-        console.log(e.date_created);
-        return e.date_created.startsWith(todayDate).length > 0;
-      })
+      entries.length &&
+      isSameDay(todayDate, new Date(entries[0].date_created))
     ) {
+      console.log('entry exists for today');
+
       setToday(true);
+      props.history.push('/edit');
     } else {
       setToday(false);
     }
     // console.log('today', today);
     // console.log('useef count', useEffectCount);
-  }, [entries, today]);
+  }, []);
 
   useEffect(() => {
     //console.log('use effect update state ran');
@@ -86,6 +85,7 @@ const NewEntry = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('submit clicked')
     let newEntry = {
       day_rating: rating,
       deep_hours: hours,
@@ -93,7 +93,7 @@ const NewEntry = (props) => {
     };
     ApiService.postEntry(newEntry).then((x) => {
       props.setEntries([...entries, x]);
-      props.history.push('./timeline');
+      props.history.push('/timeline');
     });
   };
   let handleEdit;
@@ -112,7 +112,7 @@ const NewEntry = (props) => {
         let newEntries = [...entries];
         newEntries.splice(0, 1, x);
         props.setEntries(newEntries);
-        props.history.push('./timeline');
+        props.history.push('/timeline');
       });
     };
   }

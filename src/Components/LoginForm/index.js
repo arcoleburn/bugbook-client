@@ -20,7 +20,8 @@ const LoginForm = (props) => { //should turn this into a controled form
       password: password.value,
     })
       .then((res) => {
-        if (!res.ok) {
+        console.log('res', res)
+        if (!res.status == 200) {
           console.log('bad res')
           return res.json().then((error) => Promise.reject(error));
         }
