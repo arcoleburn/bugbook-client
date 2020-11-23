@@ -53,15 +53,6 @@ const Timeline = (props) => {
     <Wrapper>
       <h2> Timeline</h2>{' '}
       <h3>
-<<<<<<< HEAD
-        {new Date(chunkedList[display][0].props.date).toDateString()}{' '}
-        - {' '}
-        {new Date(
-          chunkedList[display][
-            chunkedList[display].length - 1
-          ].props.date
-        ).toDateString() || null}
-=======
         {entries.length > 0 &&
           new Date(
             chunkedList[display][0].props.date
@@ -75,7 +66,6 @@ const Timeline = (props) => {
               chunkedList[display].length - 1
             ].props.date
           ).toDateString()}{' '}
->>>>>>> master
       </h3>
       <Link to = {'/new-entry'}>Today's Entry</Link>
       <LabelBar>
