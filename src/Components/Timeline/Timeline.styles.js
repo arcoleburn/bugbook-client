@@ -8,7 +8,7 @@ background-color: var(--ivoryPaper);
         padding: 10px 0;
     }
     padding: 0 1em;
-    padding-bottom: 100%;
+    padding-bottom: %;
      h3{
          text-align: center;
      }

@@ -61,7 +61,7 @@ const Header = (props) => {
           <FontAwesomeIcon icon={faSearch} size="3x" />
         </span>
 
-        <Link to="/">
+        <Link to="/home">
           <h1>BugBook</h1>
         </Link>
       </LinkWrapper>

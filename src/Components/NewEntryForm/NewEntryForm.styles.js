@@ -7,7 +7,7 @@ display:flex;
 flex-direction:column;
 background-color: var(--ivoryPaper);
 margin: 30px;
-padding-bottom: 100%;
+padding-bottom: 0%;
 
     select, input, textarea{
         margin: 10px 0;

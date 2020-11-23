@@ -6,12 +6,13 @@ import UserInfoService from '../../services/user-info-service'
 import jwt from 'jsonwebtoken'
 import userInfoService from '../../services/user-info-service';
 import { Link } from 'react-router-dom';
+import { Wrapper } from './LoginPage.styles';
 const LoginPage = (props) => {
   console.log('login props', props)
     const handleLoginSuccess = () => {
     console.log('handle login success ran')
     const { location, history } = props;
-    const destination = (location.state || {}).from || '/';
+    const destination = (location.state || {}).from || '/home';
 
     props.setUserId(jwt.decode(TokenService.getAuthToken()).userId)
     props.setFirstName(jwt.decode(TokenService.getAuthToken()).firstName)
@@ -20,11 +21,11 @@ const LoginPage = (props) => {
   };
 
   return (
-    <>
+    <Wrapper>
       <h2> Login</h2>
       <LoginForm onLoginSuccess={handleLoginSuccess} updateId={props.updateId}/>{' '}
-      <Link to='/register'> No Account? Register here!</Link>
-    </>
+      <Link to='/register'> No Account? Register here!</Link> 
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,5 @@
-import WordCloud from 'react-d3-cloud'
-// import WordCloud from './WordClouds';
+//import WordCloud from 'react-d3-cloud'
+ import WordCloud from './WordClouds';
 import {useState} from 'react';
 import Chart from './Charts';
 import { Wrapper, ControlButtons } from './Vizualize.styles';

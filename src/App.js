@@ -7,14 +7,12 @@ import Vizualize from './Components/Vizualize';
 import Observations from './Components/Observations/ObservationsPage';
 import ObservationsForm from './Components/Observations/ObservationsForm';
 import LoginPage from '../src/Routes/LoginPage';
+import LandingPage from './Routes/LandingPage'
 import Header from '../src/Components/Header';
 import PrivateRoute from '../src/Components/Utils/PrivateRoute';
 import PublicRoute from '../src/Components/Utils/PublicRoute';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import jwt from 'jsonwebtoken';
 import TokenService from '../src/services/token.service';
@@ -25,7 +23,9 @@ import { GlobalStyle } from './GlobalStyles';
 const App = () => {
   const [userId, setUserId] = useState(null);
   const [firstName, setFirstName] = useState(null);
-  const [entries, setEntries] = useState(['This an an example entry']);
+  const [entries, setEntries] = useState([
+    'This an an example entry',
+  ]);
 
   useEffect(() => {
     if (!TokenService.getAuthToken()) return;
@@ -33,11 +33,16 @@ const App = () => {
       setUserId(jwt.decode(TokenService.getAuthToken()).userId);
       setFirstName(jwt.decode(TokenService.getAuthToken()).firstName);
     }
-    ApiService.getEntries().then((resData) =>{
-      setEntries(resData.sort((a,b)=>Date.parse(b.date_created)-Date.parse(a.date_created)))
+    ApiService.getEntries().then((resData) => {
+      setEntries(
+        resData.sort(
+          (a, b) =>
+            Date.parse(b.date_created) - Date.parse(a.date_created)
+        )
+      );
     });
-  }, [userId])
-  
+  }, [userId]);
+
   // useEffect(()=> {
   //   console.log('use effect for today state ran');
   //   console.log('length',entries.filter((e) => e.date_created.startsWith(todayDate).length === 1).length === 1 )
@@ -55,17 +60,7 @@ const App = () => {
           setEntries={setEntries}
         />
         <Switch>
-          <PrivateRoute
-            exact
-            path="/"
-            component={(props) => (
-              <Home
-                {...props}
-                setUserId={setUserId}
-                setFirstName={setFirstName}
-              />
-            )}
-          />
+          <PublicRoute exact path="/" component={LandingPage} />
           <PublicRoute
             exact
             path="/register"
@@ -82,6 +77,17 @@ const App = () => {
                   setFirstName={setFirstName}
                 />
               </>
+            )}
+          />
+          <PrivateRoute
+            exact
+            path="/home"
+            component={(props) => (
+              <Home
+                {...props}
+                setUserId={setUserId}
+                setFirstName={setFirstName}
+              />
             )}
           />
           <PrivateRoute
@@ -141,7 +147,7 @@ const App = () => {
             )}
           />
         </Switch>
-        <GlobalStyle/>
+        <GlobalStyle />
       </Router>
     </>
   );
