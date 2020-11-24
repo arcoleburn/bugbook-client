@@ -22,6 +22,17 @@ export const Content = styled.div`
   justify-content: space-between;
   /* text-align: center; */
   margin: 10px;
+  button{
+    border: none;
+    background-color: transparent;
+    font-family: var(--fontSerif);
+    font-weight: 600;
+    font-size:var(--fontSmall);
+    :hover, :active {
+    background-color: var(--blueInk);
+    color:var(--white);
+  }
+  }
 
   div:first-child{
       width:36%;

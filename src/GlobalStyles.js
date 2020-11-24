@@ -39,4 +39,11 @@ body{
 button, input, select, textarea{ 
     border-radius: 5px;
 }
+
+@media all and (min-width: 700px){
+    form{
+        max-width: 400px;
+        margin: 0;
+    }
+}
 `;

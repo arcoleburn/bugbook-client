@@ -16,7 +16,7 @@ const DailySummaryExp = (props) => {
       {/* <p>Journal Entry:</p> */}
       {props.entry}
       {props.date == new Date().toDateString() ? <Link to='/edit'><button> Edit Entry</button> </Link> : null} 
-      <button onClick = {handleDel}> X </button>
+      <button onClick = {handleDel}> Delete Entry </button>
     </Wrapper>
   );
 };

@@ -45,5 +45,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest-amcharts"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\](?!(@amcharts)\\/).+\\.(js|jsx|ts|tsx)$"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest-amcharts": "0.0.2"
   }
 }

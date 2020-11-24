@@ -10,6 +10,7 @@ import { ControlButtons, LabelBar, Wrapper } from './Timeline.styles';
 import { Link } from 'react-router-dom';
 
 const Timeline = (props) => {
+ 
   const [isLoading, setIsLoading] = useState(false);
   const [display, setDisplay] = useState(0);
 
@@ -51,7 +52,7 @@ const Timeline = (props) => {
 
   return (
     <Wrapper>
-      <h2> Timeline</h2>{' '}
+      <h2> {props.firstName}'s Timeline</h2>{' '}
       <h3>
         {entries.length > 0 &&
           new Date(

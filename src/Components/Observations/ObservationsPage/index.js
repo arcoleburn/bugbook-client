@@ -42,7 +42,7 @@ const handleDel =(id)=>{
   let indexDel = obs.find(o=>o.id ==id)
   setObs(obs.filter(o=>o !== indexDel))
 }
-  const list = obs.map((o) =><li key={o.id}>{o.observation} <button key={o.id+1} onClick={()=> handleDel(o.id)}> X </button></li>);
+  const list = obs.map((o) =><li key={o.id}>{o.observation} <button key={o.id+1} onClick={()=> handleDel(o.id)}> Delete </button></li>);
   
   return (
     <Wrapper>

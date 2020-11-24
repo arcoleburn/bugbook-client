@@ -6,6 +6,7 @@ background-color: var(--ivoryPaper);
     h2{
         margin:0;
         padding: 10px 0;
+        text-align: center;
     }
     padding: 0 1em;
     padding-bottom: %;
@@ -31,10 +32,14 @@ justify-content: space-between;
 font-weight: 600;
 div:first-child{
       width:36%;
+      min-width: 130px;
   }
   div:nth-child(even) {
       width: 15%;
       text-align: left;
       justify-self:center;
+  }
+  div:active{
+      background-color: var(--blueInk);
   }
 `

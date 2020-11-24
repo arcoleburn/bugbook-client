@@ -11,7 +11,7 @@ background-color: var(--blueInk);
 color: var(--white);
 
 button{
-    max-width: 5%;
+    max-width: 100em;
     align-self:flex-end;
 }
 `

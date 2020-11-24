@@ -48,15 +48,15 @@ const Vizualize = (props) => {
   //attempt to map word data 
     //find unique words
     const posWordsArr = positiveDaysWords.split(' ')
-    console.log('pos days', posWordsArr)
+    
   function unique(value, index, self){
     return self.indexOf(value) === index
   }
     const uniquePosWords= posWordsArr.filter(unique) 
-    console.log(uniquePosWords)
+ 
 
     const posWordsData = uniquePosWords.map(word=> {return {text: word, value: 0}})
-    console.log('data before', posWordsData)
+    
 
   posWordsArr.forEach(word=> {
     //find matching object in posWords data

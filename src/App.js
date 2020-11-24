@@ -117,6 +117,7 @@ const App = () => {
             component={(props) => (
               <Timeline
                 {...props}
+                firstName={firstName}
                 entries={entries}
                 setEntries={setEntries}
               />
@@ -141,7 +142,7 @@ const App = () => {
             exact
             path="/vizualize"
             component={(props) => (
-              <Vizualize {...props} entries={entries} />
+              <Vizualize {...props} entries={entries} id={userId}/>
             )}
           />
           <PrivateRoute

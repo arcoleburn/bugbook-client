@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 export const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
 background-color: var(--ivoryPaper);
+
 `
 export const EntryForm = styled.form`
 display:flex;
@@ -18,4 +22,7 @@ padding-bottom: 0%;
         font-family: var(--fontSerif);
         font-size: var(--fontMed)
     }
+    @media all and (min-width: 700px){
+    max-width: 50%;
+}
 `

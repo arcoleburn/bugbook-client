@@ -17,7 +17,7 @@ const handleClick = (e) => {
   return (
     <Wrapper onClick={handleClick}>
       <Content expanded={expanded}>
-        <div>{props.date}</div>
+        <button onClick={handleClick}>{props.date}</button>
         <div>{props.hours}</div>
         <div>{props.rating}</div>
       </Content>

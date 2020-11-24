@@ -28,6 +28,7 @@ li{
 
     button{
         max-height: 2em;
+        margin-left: 2em;
     }
 }
 

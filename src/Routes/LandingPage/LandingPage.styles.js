@@ -53,7 +53,11 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-
+    margin: 20px;
+    p{
+        font-family: var(--fontSerif)
+    }
+        
 
     button{
         width: 250px;
@@ -61,6 +65,7 @@ export const Wrapper = styled.div`
         background-color: var(--seaBlue);
         border-radius: 10px;
         font-size: var(--fontBig);
+        font-family: var(--fontHandwritten);
         margin: 30px 0;
         font-weight: 600;
 

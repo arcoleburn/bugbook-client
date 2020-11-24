@@ -5,7 +5,9 @@ background-color: var(--ivoryPaper);
 
     h2{
         margin-left:30px;
+        margin-bottom: 0;
         padding: 10px 0;
+        text-align:center;
     }
     padding: 0 1em;
     padding-bottom: 0%;
@@ -14,5 +16,9 @@ background-color: var(--ivoryPaper);
      }
 a{
     margin-left: 30px;
+}
+form{
+    margin-top: 0;
+
 }
 `
