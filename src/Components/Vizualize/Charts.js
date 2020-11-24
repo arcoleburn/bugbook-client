@@ -21,8 +21,8 @@ console.log(data)
         let hours = filtered.map(x=>x.hours)
         let rating = filtered.map(x=>x.score)
 
-        byDayOfWeek[index].averageHours = hours.reduce((a,b)=> a+b)/hours.length 
-        byDayOfWeek[index].averageRating = rating.reduce((a,b)=>a+b)/rating.length
+        byDayOfWeek[index].averageHours = hours.reduce((a,b)=> a+b, 0)/hours.length 
+        byDayOfWeek[index].averageRating = rating.reduce((a,b)=>a+b, 0)/rating.length
     })
   }
 

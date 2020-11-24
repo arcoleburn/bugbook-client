@@ -23,7 +23,7 @@ const WordCloud = (props) => {
     } else {
       series.text = props.negative;
     }
-    series.minWordLength = 3;
+    series.minWordLength = 4;
     chart.current = x;
 
      series.minFontSize = '1%'

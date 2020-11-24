@@ -7,7 +7,7 @@ import Vizualize from './Components/Vizualize';
 import Observations from './Components/Observations/ObservationsPage';
 import ObservationsForm from './Components/Observations/ObservationsForm';
 import LoginPage from '../src/Routes/LoginPage';
-import LandingPage from './Routes/LandingPage'
+import LandingPage from './Routes/LandingPage';
 import Header from '../src/Components/Header';
 import PrivateRoute from '../src/Components/Utils/PrivateRoute';
 import PublicRoute from '../src/Components/Utils/PublicRoute';
@@ -60,7 +60,17 @@ const App = () => {
           setEntries={setEntries}
         />
         <Switch>
-          <PublicRoute exact path="/" component={LandingPage} />
+          <PublicRoute
+            exact
+            path="/"
+            component={(props) => (
+              <LandingPage
+                {...props}
+                setUserId={setUserId}
+                setFirstName={setFirstName}
+              />
+            )}
+          />
           <PublicRoute
             exact
             path="/register"

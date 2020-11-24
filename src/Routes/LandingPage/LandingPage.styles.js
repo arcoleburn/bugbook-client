@@ -44,6 +44,8 @@ p{
 img{
     max-width: 75vw;
 }
+
+
 `
 
 export const Wrapper = styled.div`

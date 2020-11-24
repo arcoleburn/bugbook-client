@@ -1,4 +1,5 @@
 import React from 'react';
+import jwt from 'jsonwebtoken'
 import { Link } from 'react-router-dom';
 import Header from '../../Components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,9 +17,40 @@ import {
   Wrapper,
 } from './LandingPage.styles';
 
-import graph from '../../images/dailyrating .png'
-import observations from '../../images/observations.png'
+import graph from '../../images/dailyrating .png';
+import observations from '../../images/observations.png';
+import AuthApiService from '../../services/auth-api-service';
+import TokenService from '../../services/token.service';
 const LandingPage = (props) => {
+  const handleLoginSuccess = () => {
+    console.log('handle login success ran')
+    const { location, history } = props;
+    const destination = (location.state || {}).from || '/home';
+
+    props.setUserId(jwt.decode(TokenService.getAuthToken()).userId)
+    props.setFirstName(jwt.decode(TokenService.getAuthToken()).firstName)
+    
+    history.push(destination);
+  };
+
+  const handleDemoClick = (e) => {
+    e.preventDefault()
+    console.log('demo clicked')
+
+    AuthApiService.postLogin({username: 'johnnyUser', password: 'johnnyuser12345'}).then((res)=>{
+      if (!res.status == 200){
+        console.log('bad req')
+        return res.json().then((err)=>Promise.reject(err) )
+      }
+      TokenService.saveAuthToken(res.authToken)
+      handleLoginSuccess()
+    })
+    .catch((res)=> {
+      console.log('error..try later')
+    })
+  }
+
+
   return (
     <Wrapper>
       <h2>
@@ -30,7 +62,7 @@ const LandingPage = (props) => {
         Driven by a spirit of objective, scientific thinking, BugBook
         helps you learn things about yourself without judgement.
       </p>
-      <button> EXPLORE BUGBOOK </button>
+      <button onClick={handleDemoClick}> EXPLORE BUGBOOK </button>
       <IconTripTyc>
         <IconSet>
           <p>Rate your Days</p>
@@ -75,31 +107,37 @@ const LandingPage = (props) => {
           BugBook's additional tools kick in.
         </p>
         <ItemSet>
-          <h4>Visualize:</h4>
-          <p>
-            BugBook's visualization tool can show you word clouds of
-            your journal entries from postive days, as well as graphs
-            to help bring out trends in your daily score. What do your
-            best days have in common?
-          </p>
-          <img src={graph} alt='example of daily rating graph'/>
-          </ItemSet>
-        <ItemSet>
-          <h4>Observations</h4>
-
-          <p>
-            Observations: Develop a consistent journaling practice,
-            and you're bound to notice things on your own.
-            Observations is a place to log those things. Think of
-            yourself as a scientist studying a brand new species of
-            bug. Your job is to objectively observe and learn as much
-            as you can about that bug...the bug called YOU!
-          </p>
-          <img src={observations} alt="example of observations page"/>
+          <div>
+            <h4>Visualize:</h4>
+            <p>
+              BugBook's visualization tool can show you word clouds of
+              your journal entries from postive days, as well as
+              graphs to help bring out trends in your daily score.
+              What do your best days have in common?
+            </p>
+          </div>
+          <img src={graph} alt="example of daily rating graph" />
         </ItemSet>
+        <ItemSet>
+          <div>
+            <h4>Observations</h4>
 
+            <p>
+              Observations: Develop a consistent journaling practice,
+              and you're bound to notice things on your own.
+              Observations is a place to log those things. Think of
+              yourself as a scientist studying a brand new species of
+              bug. Your job is to objectively observe and learn as
+              much as you can about that bug...the bug called YOU!
+            </p>
+          </div>
+          <img
+            src={observations}
+            alt="example of observations page"
+          />
+        </ItemSet>
       </HowItWorks>
-      <button> BugBook Demo</button>
+      <button onClick={handleDemoClick}> BugBook Demo</button>
     </Wrapper>
   );
 };
