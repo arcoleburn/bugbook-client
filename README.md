@@ -44,3 +44,18 @@ BugBook helps you get to know yourself better through consistent, methodical jou
 - Victory (for graphs)
 - amCharts (for wordclouds)
 - fontAwesome (for icons)
+
+
+### Known Bugs/To-do 
+- Registration Router
+    - after a successful registration, users will need to navigate to the login page on their own. Need to fix router to auto direct.
+
+- Edit Entry
+    - similar to registration, after successful edit, users are not automatically routed back to the timeline. 
+
+- Loading Pages
+    - need to implement loading display on fetches. 
+
+- Visualizations 
+    - dyanmic word clouds to display positive and negative days based on user input 
+    - additional graphs
