@@ -1,5 +1,5 @@
 import React from 'react';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import { Link } from 'react-router-dom';
 import Header from '../../Components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,26 +26,30 @@ const LandingPage = (props) => {
     const { location, history } = props;
     const destination = (location.state || {}).from || '/home';
 
-    props.setUserId(jwt.decode(TokenService.getAuthToken()).userId)
-    props.setFirstName(jwt.decode(TokenService.getAuthToken()).firstName)
-    
+    props.setUserId(jwt.decode(TokenService.getAuthToken()).userId);
+    props.setFirstName(
+      jwt.decode(TokenService.getAuthToken()).firstName
+    );
+
     history.push(destination);
   };
 
   const handleDemoClick = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    AuthApiService.postLogin({username: 'johnnyUser', password: 'johnnyuser12345'}).then((res)=>{
-      if (!res.status == 200){
-        return res.json().then((err)=>Promise.reject(err) )
-      }
-      TokenService.saveAuthToken(res.authToken)
-      handleLoginSuccess()
+    AuthApiService.postLogin({
+      username: 'johnnyUser',
+      password: 'johnnyuser12345',
     })
-    .catch((res)=> {
-    })
-  }
-
+      .then((res) => {
+        if (!res.status == 200) {
+          return res.json().then((err) => Promise.reject(err));
+        }
+        TokenService.saveAuthToken(res.authToken);
+        handleLoginSuccess();
+      })
+      .catch((res) => {});
+  };
 
   return (
     <Wrapper>
@@ -87,8 +91,8 @@ const LandingPage = (props) => {
         <ItemSet>
           <h4>Step 2: Creative Hours</h4>
           <p>
-            Creative Hours: Creativity is key. How much time are you
-            dedicating to the things you want to focus on?{' '}
+            Creativity is key. How much time are you dedicating to the
+            things you want to focus on?{' '}
           </p>
         </ItemSet>
         <ItemSet>
