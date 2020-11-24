@@ -5,7 +5,6 @@ import Chart from './Charts';
 import { Wrapper, ControlButtons } from './Vizualize.styles';
 
 const Vizualize = (props) => {
-  console.log('viz props', props)
   const [display, setDisplay] = useState('intro');
 
   const renderIntro = () => {
@@ -59,15 +58,10 @@ const Vizualize = (props) => {
     
 
   posWordsArr.forEach(word=> {
-    //find matching object in posWords data
     let index = posWordsData.findIndex(x=> x.text == word)
-
-    //plus 1 to it's value 
     posWordsData[index].value += 1 
     
   })
-console.log('data after', posWordsData)
-    //count instances of each word
  
 
 const cloud = <WordCloud data={posWordsData} />
@@ -87,7 +81,6 @@ const cloud = <WordCloud data={posWordsData} />
     };
   });
 
-  console.log('chart data', data);
 
   return (
     <Wrapper>

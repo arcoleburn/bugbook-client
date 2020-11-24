@@ -8,9 +8,7 @@ import userInfoService from '../../services/user-info-service';
 import { Link } from 'react-router-dom';
 import { Wrapper } from './LoginPage.styles';
 const LoginPage = (props) => {
-  console.log('login props', props)
     const handleLoginSuccess = () => {
-    console.log('handle login success ran')
     const { location, history } = props;
     const destination = (location.state || {}).from || '/home';
 

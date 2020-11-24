@@ -23,7 +23,6 @@ import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token.service';
 const LandingPage = (props) => {
   const handleLoginSuccess = () => {
-    console.log('handle login success ran')
     const { location, history } = props;
     const destination = (location.state || {}).from || '/home';
 
@@ -35,18 +34,15 @@ const LandingPage = (props) => {
 
   const handleDemoClick = (e) => {
     e.preventDefault()
-    console.log('demo clicked')
 
     AuthApiService.postLogin({username: 'johnnyUser', password: 'johnnyuser12345'}).then((res)=>{
       if (!res.status == 200){
-        console.log('bad req')
         return res.json().then((err)=>Promise.reject(err) )
       }
       TokenService.saveAuthToken(res.authToken)
       handleLoginSuccess()
     })
     .catch((res)=> {
-      console.log('error..try later')
     })
   }
 

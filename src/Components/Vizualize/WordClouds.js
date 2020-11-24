@@ -5,7 +5,6 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Wrapper } from './Vizualize.styles';
 
 const WordCloud = (props) => {
-  console.log('wordcloud props', props);
   const [dayType, setDayType] = useState('plus');
 
   const chart = useRef(null);
@@ -73,18 +72,3 @@ const WordCloud = (props) => {
 };
 
 export default WordCloud;
-
-//trying to create object
-//console.log('words', words)
-// let uniqueWords = [...new Set(plus2.join(" ").toLowerCase().split(" "))]
-
-// let cloudData=uniqueWords.map(x=> {return {text:x, value:0 }})
-
-// for(let word in words){
-//     const index = cloudData.findIndex(x=>x.text===word)
-//     console.log('index', index||null
-//     )
-//    // cloudData[index].value +
-// }
-
-//console.log('cloud data', cloudData)

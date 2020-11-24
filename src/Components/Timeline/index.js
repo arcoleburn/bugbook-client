@@ -15,18 +15,6 @@ const Timeline = (props) => {
   const [display, setDisplay] = useState(0);
 
   const { entries, setEntries } = props;
-  // useEffect(()=>{
-  //   let entries=props.entries
-  //   console.log(entries)
-  //   setIsLoading(true)
-  //   console.log('get entries ran from timeline')
-  //   ApiService.getEntries().then((resData)=>setEntries(resData))
-
-  // setIsLoading(false)
-  // return
-  // }, [props.entries])
-  console.log(entries);
-  console.log(chunk(entries, 11));
   let list = entries
     .sort(
       (a, b) =>
@@ -46,8 +34,7 @@ const Timeline = (props) => {
         />
       );
     });
-  console.log('list', list);
-  console.log('chunked list', chunk(list, 14));
+ 
   let chunkedList = chunk(list, 7);
 
   return (

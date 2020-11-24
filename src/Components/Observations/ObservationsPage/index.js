@@ -37,7 +37,6 @@ const Observations = (props) => {
    
   }
 const handleDel =(id)=>{
-  console.log('del')
   ApiService.delObs(id)
   let indexDel = obs.find(o=>o.id ==id)
   setObs(obs.filter(o=>o !== indexDel))

@@ -16,7 +16,6 @@ const initialFormState = {
   journal: '',
 };
 function reducer(state, { field, value }) {
-  console.log('reducer ran with state:', state);
   return {
     ...state,
     [field]: value,
@@ -26,7 +25,6 @@ function reducer(state, { field, value }) {
 const todayDate = new Date();
 
 const NewEntry = (props) => {
-console.log('props entry', props)
   const { entries } = props;
 
   const [today, setToday] = useState(false);
@@ -39,37 +37,24 @@ console.log('props entry', props)
   let currentEntry;
   if (entries.length > 0 && props.edit) {
     currentEntry = entries[0];
-    //console.log('current', currentEntry);
   }
 
   useEffect(() => {
-    // console.log(
-    //   '??',
-    //   entries.filter((e) => e.date_created.startsWith(todayDate))
-    // );
     if (
       entries.length &&
       isSameDay(todayDate, new Date(entries[0].date_created))
     ) {
-      console.log('entry exists for today');
 
       setToday(true);
       props.history.push('/edit');
     } else {
       setToday(false);
     }
-    // console.log('today', today);
-    // console.log('useef count', useEffectCount);
   }, []);
 
   useEffect(() => {
-    //console.log('use effect update state ran');
     if (props.edit) {
-      // console.log(currentEntry);
       let { day_rating, deep_hours, journal_entry } = currentEntry;
-      // console.log('dayrate', day_rating);
-      // console.log('day hours', deep_hours);
-      // console.log('ent', journal_entry);
       setRating(day_rating);
       setHours(deep_hours);
       setEntry(journal_entry);
@@ -85,7 +70,6 @@ console.log('props entry', props)
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit clicked')
     let newEntry = {
       day_rating: rating,
       deep_hours: hours,
@@ -100,15 +84,13 @@ console.log('props entry', props)
   if (props.edit) {
     handleEdit = (e) => {
       e.preventDefault();
-      console.log('edit clicked');
       let newEntry = {
         day_rating: rating,
         deep_hours: hours,
         journal_entry: entry,
       };
-      console.log('current id', currentEntry.id);
       ApiService.editEntry(currentEntry.id, newEntry).then((x) => {
-        console.log('edited', x);
+      
         let newEntries = [...entries];
         newEntries.splice(0, 1, x);
         props.setEntries(newEntries);
@@ -118,15 +100,9 @@ console.log('props entry', props)
   }
 
   if (props.entries.length > 0) {
-    // console.log(new Date(props.entries[0].date_created));
     const now = new Date();
     const date = now.toDateString();
   }
-
-  // if(today){
-  //   console.log('entry today')
-  //   currentEntry = props.entries.filter(e=>e.date_created.startsWith())
-  // }
   return (
     <Wrapper>
       <DatePage />
@@ -183,5 +159,6 @@ console.log('props entry', props)
 
 NewEntry.defaultProps = {
   rating: 1,
+  entries: []
 };
 export default NewEntry;

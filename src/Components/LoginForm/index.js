@@ -20,20 +20,15 @@ const LoginForm = (props) => { //should turn this into a controled form
       password: password.value,
     })
       .then((res) => {
-        console.log('res', res)
         if (!res.status == 200) {
-          console.log('bad res')
           return res.json().then((error) => Promise.reject(error));
         }
         username.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
-        //userInfoService.saveUserId(res.userId);
-        //userInfoService.saveUserFirstName(res.firstName)
         props.onLoginSuccess();
       })
       .catch((res) => {
-        console.log('error caught')
         setError({ error: res.error });
       });
   };

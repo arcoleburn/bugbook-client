@@ -44,7 +44,6 @@ const RegistrationForm = (props) => {
       email,
       first_name: firstName,
     };
-    console.log(newUser);
 
     AuthApiService.postUser(newUser)
       .then((res) => {

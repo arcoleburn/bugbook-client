@@ -7,7 +7,7 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDom.render(
         <BrowserRouter>
-            <Timeline/>
+            <Timeline entries={[]}/>
         </BrowserRouter>
         , div);
         ReactDom.unmountComponentAtNode(div);

@@ -8,7 +8,6 @@ const ApiService = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
     }).then((res) => res.json().then((data) => {
-      console.log('data from fetch', data)
       return data}));
   },
   getObservations() {
@@ -41,10 +40,9 @@ const ApiService = {
       },
     })
       .then((res) => {
-        console.log('res from post obs', res);
         res.json();
       })
-      .then((data) => console.log('success', data));
+      .then((data) => console.log('success'));
   },
   delEntry(id) {
     return fetch(`${config.API_ENDPOINT}/entries/${id}`, {

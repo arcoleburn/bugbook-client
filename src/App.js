@@ -43,14 +43,6 @@ const App = () => {
     });
   }, [userId]);
 
-  // useEffect(()=> {
-  //   console.log('use effect for today state ran');
-  //   console.log('length',entries.filter((e) => e.date_created.startsWith(todayDate).length === 1).length === 1 )
-  //   if (entries.filter((e) => e.date_created.startsWith(todayDate).length === 1).length === 1) {
-  //     setToday(true)
-  //   }
-  // }, [entries]);
-
   return (
     <>
       <Router>

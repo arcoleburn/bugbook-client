@@ -2,7 +2,6 @@ import { useState } from "react"
 import { ObsFormWrapper } from "./ObsForm.styles"
 
 const ObsForm = (props) => {
-console.log('obs form props', props)
 const [input, setInput] = useState('')    
 
 const onChange =(e) => {setInput(e.target.value)}

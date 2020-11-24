@@ -5,7 +5,7 @@ import { ChartWrapper } from './Charts.styles';
 
 const Chart = (props) => {
   const { data } = props;
-console.log(data)
+
   const byDayOfWeek = [
       { day: 0, averageHours: 0, averageRating: 0, fill: "red" },
       { day: 1, averageHours: 0, averageRating: 0 },
@@ -26,9 +26,8 @@ console.log(data)
     })
   }
 
-    console.log('mondays', data.filter(day=> day.day==1))
 const ratingData = byDayOfWeek.map(x=>{ return {day: x.day+1, rating: x.averageRating}})
-console.log(ratingData)
+
   return (
       <ChartWrapper>
       <h3> Daily Rating by Day of the Week</h3>
