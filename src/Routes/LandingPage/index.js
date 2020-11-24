@@ -17,7 +17,7 @@ import {
   Wrapper,
 } from './LandingPage.styles';
 
-import graph from '../../images/dailyrating .png';
+import graph from '../../images/dailyrating.png';
 import observations from '../../images/observations.png';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token.service';
