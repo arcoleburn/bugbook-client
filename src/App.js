@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
+
 import Home from './Components/HomePage';
 import NewEntry from './Components/NewEntryForm';
 import Timeline from './Components/Timeline';
 import Vizualize from './Components/Vizualize';
-
 import Observations from './Components/Observations/ObservationsPage';
 import ObservationsForm from './Components/Observations/ObservationsForm';
 import LoginPage from '../src/Routes/LoginPage';
@@ -11,13 +13,11 @@ import LandingPage from './Routes/LandingPage';
 import Header from '../src/Components/Header';
 import PrivateRoute from '../src/Components/Utils/PrivateRoute';
 import PublicRoute from '../src/Components/Utils/PublicRoute';
-
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
-
-import jwt from 'jsonwebtoken';
-import TokenService from '../src/services/token.service';
 import RegistrationPage from './Components/RegistrationPage';
+
+import TokenService from '../src/services/token.service';
 import ApiService from './services/bugbook-api-service';
+
 import { GlobalStyle } from './GlobalStyles';
 
 const App = () => {
@@ -135,7 +135,7 @@ const App = () => {
             exact
             path="/vizualize"
             component={(props) => (
-              <Vizualize {...props} entries={entries} id={userId}/>
+              <Vizualize {...props} entries={entries} id={userId} />
             )}
           />
           <PrivateRoute

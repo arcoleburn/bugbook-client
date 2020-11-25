@@ -25,25 +25,24 @@ const WordCloud = (props) => {
     series.minWordLength = 4;
     chart.current = x;
 
-     series.minFontSize = '1%'
-    series.randomness = '0'
+    series.minFontSize = '1%';
+    series.randomness = '0';
 
     series.heatRules.push({
-        "target": series.labels.template,
-        "property": "fill",
-        "min": am4core.color("#ffffff"),
-        "max": am4core.color("#000022"),
-        "dataField": "value"
-       });
-
+      target: series.labels.template,
+      property: 'fill',
+      min: am4core.color('#ffffff'),
+      max: am4core.color('#000022'),
+      dataField: 'value',
+    });
 
     //creates loading spinner
     series.events.on('arrangestarted', function (ev) {
-            ev.target.baseSprite.preloader.show(0);
-        });
+      ev.target.baseSprite.preloader.show(0);
+    });
     series.events.on('arrangeprogress', function (ev) {
-            ev.target.baseSprite.preloader.progress = ev.progress;
-        });
+      ev.target.baseSprite.preloader.progress = ev.progress;
+    });
 
     return () => x.dispose();
   }, []);

@@ -1,5 +1,4 @@
 import { Content, Wrapper } from './DailySummary.styles';
-import { Link } from 'react-router-dom';
 import DailySummaryExp from '../DailySummaryExpanded';
 import { useState } from 'react';
 

@@ -1,12 +1,12 @@
-import Header from '../Header'
+import RegistrationForm from '../RegistrationForm';
+
 import { Wrapper } from '../NewEntryForm/NewEntryForm.styles';
-import RegistrationForm from '../RegistrationForm'
 
 const RegistrationPage = (props) => {
   const handleRegistrationSuccess = (user) => {
-    console.log('reg success ran')
+    console.log('reg success ran');
     const { history } = props;
-    console.log('history', history)
+    console.log('history', history);
     history.push('/login');
   };
 

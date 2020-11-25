@@ -1,7 +1,5 @@
 import React from 'react';
 import jwt from 'jsonwebtoken';
-import { Link } from 'react-router-dom';
-import Header from '../../Components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMedal,
@@ -74,7 +72,7 @@ const LandingPage = (props) => {
         </IconSet>
         <IconSet>
           <p>Observe Trends</p>
-          <FontAwesomeIcon icon={faMicroscope} size="8x" />{' '}
+          <FontAwesomeIcon icon={faMicroscope} size="8x" />
         </IconSet>
       </IconTripTyc>
 
@@ -92,7 +90,7 @@ const LandingPage = (props) => {
           <h4>Step 2: Creative Hours</h4>
           <p>
             Creativity is key. How much time are you dedicating to the
-            things you want to focus on?{' '}
+            things you want to focus on?
           </p>
         </ItemSet>
         <ItemSet>

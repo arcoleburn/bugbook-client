@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import TokenService from '../../services/token.service';
 import AuthApiService from '../../services/auth-api-service';
-import userInfoService from '../../services/user-info-service';
 import {
   EntryForm,
   Wrapper,
 } from '../NewEntryForm/NewEntryForm.styles';
-const LoginForm = (props) => { //should turn this into a controled form 
+
+const LoginForm = (props) => {
+  //should turn this into a controled form
   const [error, setError] = useState(null);
 
   const handleSubmitJwtAuth = (ev) => {

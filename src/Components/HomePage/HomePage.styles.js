@@ -1,19 +1,19 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-display:flex;
-flex-direction: row;
-border-radius: 10px;
-background-color: #FFFFEA;
-justify-content:space-between;
-`
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: #ffffea;
+  justify-content: space-between;
+`;
 
 export const Content = styled.div`
-display:flex;
-flex-direction: column;
-text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 
-a{
+  a {
     font-family: var(--fontHandwritten);
     font-size: var(--fontBig);
     text-decoration: none;
@@ -22,5 +22,5 @@ a{
     border-radius: 15px;
     margin: 10px;
     padding: 30px;
-}
-`
+  }
+`;

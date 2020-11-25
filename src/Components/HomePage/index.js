@@ -1,19 +1,16 @@
 import React from 'react';
-import TheDate from '../Date';
 import { Link } from 'react-router-dom';
+import { isSameDay } from 'date-fns';
+
+import TheDate from '../Date';
 import { Content, Wrapper } from './HomePage.styles';
-import Header from '../Header';
-import RegistrationForm from '../RegistrationForm';
-import { compareAsc, isSameDay } from 'date-fns';
 
 const Home = (props) => {
-  
-  const todayDate = Date.now()
+  const todayDate = Date.now();
   return (
     <Wrapper>
       <div></div>
       <Content>
-        {/* <Header setUserId = {props.setUserId} setFirstName={props.setFirstName}/> */}
         <TheDate />
         <Link
           to={
@@ -28,7 +25,6 @@ const Home = (props) => {
         >
           Today's Entry
         </Link>
-        {/* <Link to="/new-entry">Today's Entry</Link> */}
         <Link to="/timeline">Timeline</Link>
         <Link to="/observations">Observations</Link>
         <Link to="/vizualize">Vizualize</Link>

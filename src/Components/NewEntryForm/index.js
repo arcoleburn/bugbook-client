@@ -1,34 +1,12 @@
-//FIX THE DATES BS
+import React, { useState, useEffect } from 'react';
 
-import React, { useReducer, useState, useEffect } from 'react';
-import Header from '../Header';
 import DatePage from '../Date';
 import { EntryForm, Wrapper } from './NewEntryForm.styles';
+
 import ApiService from '../../services/bugbook-api-service';
-import jwt from 'jsonwebtoken';
-import TokenService from '../../services/token.service';
-import userInfoService from '../../services/user-info-service';
-import { compareAsc, isSameDay } from 'date-fns';
-
-const initialFormState = {
-  rating: 0,
-  hours: 0,
-  journal: '',
-};
-function reducer(state, { field, value }) {
-  return {
-    ...state,
-    [field]: value,
-  };
-}
-
-const todayDate = new Date();
 
 const NewEntry = (props) => {
   const { entries } = props;
-
-  // const [today, setToday] = useState(false);
-  //const [state, dispatch] = useReducer(reducer, initialFormState);
 
   const [rating, setRating] = useState(0);
   const [hours, setHours] = useState(0);
@@ -38,19 +16,6 @@ const NewEntry = (props) => {
   if (entries.length > 0 && props.edit) {
     currentEntry = entries[0];
   }
-
-  // useEffect(() => {
-  //   if (
-  //     entries.length &&
-  //     isSameDay(todayDate, new Date(entries[0].date_created))
-  //   ) {
-
-  //     setToday(true);
-  //     // props.history.push('/edit');
-  //   } else {
-  //     setToday(false);
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (props.edit) {
@@ -81,79 +46,74 @@ const NewEntry = (props) => {
     });
   };
   let handleEdit;
-  // if (props.edit) {
-    handleEdit = (e) => {
-      e.preventDefault();
-      let newEntry = {
-        day_rating: rating,
-        deep_hours: hours,
-        journal_entry: entry,
-      };
-      ApiService.editEntry(currentEntry.id, newEntry).then((x) => {
-        console.log(x)
+  handleEdit = (e) => {
+    e.preventDefault();
+    let newEntry = {
+      day_rating: rating,
+      deep_hours: hours,
+      journal_entry: entry,
+    };
+    ApiService.editEntry(currentEntry.id, newEntry)
+      .then((x) => {
+        console.log(x);
         let newEntries = [...entries];
         newEntries.splice(0, 1, x);
         props.setEntries([...newEntries]);
-        console.log('new entries', newEntries)
+        console.log('new entries', newEntries);
         props.history.push('/timeline');
-      }).catch(err=>console.log('err', err))
-    };
-  // }
+      })
+      .catch((err) => console.log('err', err));
+  };
 
-  // if (props.entries.length > 0) {
-  //   const now = new Date();
-  //   const date = now.toDateString();
-  // }
   return (
     <Wrapper>
       <DatePage />
-      
-        <EntryForm>
-          <label htmlFor="rating">How was today? (-2/+2 scale)</label>
-          <select
-            name="rating"
-            id="rating"
-            value={rating}
-            onChange={onChange}
-          >
-            <option value="-2">-2</option>
-            <option value="-1">-1</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
-          <label htmlFor="hours">
-            {' '}
-            How many hours did you spend creatively today?{' '}
-          </label>
-          <input
-            type="number"
-            name="hours"
-            id="hours"
-            step=".5"
-            min="0"
-            value={hours}
-            onChange={onChange}
-          />
-          <label htmlFor="journal"> Tell me about today:</label>
-          <textarea
-            name="journal"
-            id="journal"
-            onChange={onChange}
-            defaultValue={entry}
-          ></textarea>
 
-          <button onClick={props.edit ? handleEdit : handleSubmit}>
-            {props.edit ? 'Edit' : 'Submit'}
-          </button>
-        </EntryForm>
-      
+      <EntryForm>
+        <label htmlFor="rating">How was today? (-2/+2 scale)</label>
+        <select
+          name="rating"
+          id="rating"
+          value={rating}
+          onChange={onChange}
+        >
+          <option value="-2">-2</option>
+          <option value="-1">-1</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+        <label htmlFor="hours">
+          {' '}
+          How many hours did you spend creatively today?{' '}
+        </label>
+        <input
+          type="number"
+          name="hours"
+          id="hours"
+          step=".5"
+          min="0"
+          value={hours}
+          onChange={onChange}
+        />
+        <label htmlFor="journal"> Tell me about today:</label>
+        <textarea
+          name="journal"
+          id="journal"
+          onChange={onChange}
+          defaultValue={entry}
+        ></textarea>
+
+        <button onClick={props.edit ? handleEdit : handleSubmit}>
+          {props.edit ? 'Edit' : 'Submit'}
+        </button>
+      </EntryForm>
     </Wrapper>
   );
 };
 
 NewEntry.defaultProps = {
   rating: 1,
-  entries: []
+  entries: [],
 };
 export default NewEntry;

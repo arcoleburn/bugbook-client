@@ -7,8 +7,11 @@ const ApiService = {
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => res.json().then((data) => {
-      return data}));
+    }).then((res) =>
+      res.json().then((data) => {
+        return data;
+      })
+    );
   },
   getObservations() {
     return fetch(`${config.API_ENDPOINT}/observations/`, {
@@ -26,8 +29,7 @@ const ApiService = {
         'Content-Type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    })
-      .then((res) => res.json())
+    }).then((res) => res.json());
   },
 
   postObservation(data) {
@@ -69,10 +71,9 @@ const ApiService = {
       body: JSON.stringify(entry),
       headers: {
         'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      }
-    })
-      .then((res) => res.json())
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => res.json());
   },
 };
 

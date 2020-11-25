@@ -1,11 +1,10 @@
-'use strict';
-
 import { useState, useReducer } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import {
   Wrapper,
   EntryForm,
 } from '../NewEntryForm/NewEntryForm.styles';
+
 const initialFormState = {
   regUsername: '',
   regPassword: '',
@@ -13,6 +12,7 @@ const initialFormState = {
   email: '',
   firstName: '',
 };
+
 function reducer(state, { field, value }) {
   return {
     ...state,
@@ -47,17 +47,10 @@ const RegistrationForm = (props) => {
 
     AuthApiService.postUser(newUser)
       .then((res) => {
-        
-
-        // regUsername.value = '';
-        // regPassword.value = '';
-        // confirmPass.value = '';
-        // email.value = '';
-        // firstName.value = '';
+        //should reset field values here
         props.onRegistrationSuccess();
       })
       .catch((res) => {
-        
         setError({ error: res.error });
       });
   };
@@ -73,7 +66,6 @@ const RegistrationForm = (props) => {
         onChange={onChange}
       ></input>
       <label htmlFor="regPassword" name="regPassword">
-        {' '}
         Password:
       </label>
       <input

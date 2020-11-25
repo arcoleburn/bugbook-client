@@ -1,7 +1,3 @@
-import config from '../config';
-
-
-
 const userInfoService = {
   saveUserId(id) {
     window.localStorage.setItem('userId', id);
@@ -15,10 +11,10 @@ const userInfoService = {
       firstName: window.localStorage.getItem('firstName'),
     };
   },
-  clearUserInfo(){
-    window.localStorage.removeItem('userId')
-    window.localStorage.removeItem('firstName')
-  }
+  clearUserInfo() {
+    window.localStorage.removeItem('userId');
+    window.localStorage.removeItem('firstName');
+  },
 };
 
-export default userInfoService
+export default userInfoService;

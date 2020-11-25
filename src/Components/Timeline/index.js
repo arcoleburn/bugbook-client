@@ -1,18 +1,15 @@
-import DailySummary from '../DailySummary';
-import Header from '../Header';
-import { useEffect, useState } from 'react';
-import ApiService from '../../services/bugbook-api-service';
-import jwt from 'jsonwebtoken';
-import TokenService from '../../services/token.service';
-import userInfoService from '../../services/user-info-service';
-import chunk from '../Utils/helpers';
-import { ControlButtons, LabelBar, Wrapper } from './Timeline.styles';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { compareAsc, isSameDay } from 'date-fns';
+import { isSameDay } from 'date-fns';
+
+import DailySummary from '../DailySummary';
+
+import chunk from '../Utils/helpers';
+
+import { ControlButtons, LabelBar, Wrapper } from './Timeline.styles';
 
 const Timeline = (props) => {
- 
-const todayDate = new Date();
+  const todayDate = new Date();
   const [isLoading, setIsLoading] = useState(false);
   const [display, setDisplay] = useState(0);
 
@@ -36,7 +33,7 @@ const todayDate = new Date();
         />
       );
     });
- 
+
   let chunkedList = chunk(list, 7);
 
   return (
@@ -44,12 +41,10 @@ const todayDate = new Date();
       <h2> {props.firstName}'s Timeline</h2>{' '}
       <h3>
         {entries.length > 0 &&
-          new Date(
-            chunkedList[display][0].props.date
-          ).toDateString()}{' '}
+          new Date(chunkedList[display][0].props.date).toDateString()}
         {entries.length == 0
           ? 'You dont have any entries yet! Get started with todays entry.'
-          : '-'}{' '}
+          : '-'}
         {entries.length > 0 &&
           new Date(
             chunkedList[display][
@@ -57,8 +52,16 @@ const todayDate = new Date();
             ].props.date
           ).toDateString()}{' '}
       </h3>
-      <Link to = {entries.length &&
-      isSameDay(todayDate, new Date(entries[0].date_created))? '/edit': '/new-entry'}>Today's Entry</Link>
+      <Link
+        to={
+          entries.length &&
+          isSameDay(todayDate, new Date(entries[0].date_created))
+            ? '/edit'
+            : '/new-entry'
+        }
+      >
+        Today's Entry
+      </Link>
       <LabelBar>
         <div>Date:</div>
         <div>Hours:</div>

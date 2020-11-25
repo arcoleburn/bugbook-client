@@ -1,6 +1,6 @@
 //import WordCloud from 'react-d3-cloud'
- import WordCloud from './WordClouds';
-import {useState} from 'react';
+import WordCloud from './WordClouds';
+import { useState } from 'react';
 import Chart from './Charts';
 import { Wrapper, ControlButtons } from './Vizualize.styles';
 
@@ -16,23 +16,31 @@ const Vizualize = (props) => {
           data to help find patterns.
         </p>
         <p>
-          Once you've made a couple of journal entries, select a button below to view. Word clouds will show you
-          patterns from your positive journal entires, while graphs
-          will show you your average score by day of the week.
+          Once you've made a couple of journal entries, select a
+          button below to view. Word clouds will show you patterns
+          from your positive journal entires, while graphs will show
+          you your average score by day of the week.
         </p>
         <p>We're adding more vizualizations, so check back soon!</p>
         <ControlButtons>
-          <button disabled={props.entries.length == 0 ? true : false} onClick={() => setDisplay('clouds')}>
+          <button
+            disabled={props.entries.length == 0 ? true : false}
+            onClick={() => setDisplay('clouds')}
+          >
             {' '}
             WordClouds
           </button>
-          <button disabled={props.entries.length == 0 ? true : false} onClick={() => setDisplay('graphs')}>Graphs</button>
+          <button
+            disabled={props.entries.length == 0 ? true : false}
+            onClick={() => setDisplay('graphs')}
+          >
+            Graphs
+          </button>
         </ControlButtons>
       </Wrapper>
     );
   };
 
-  
   //word cloud data
   const positiveDays = props.entries
     .filter((entry) => entry.day_rating == 2 || 1)
@@ -43,32 +51,25 @@ const Vizualize = (props) => {
     .map((x) => x.journal_entry);
   const negativeDaysWords = negativeDays.join(' ').toLowerCase();
 
+  //attempt to map word data
+  //find unique words
+  const posWordsArr = positiveDaysWords.split(' ');
 
-  //attempt to map word data 
-    //find unique words
-    const posWordsArr = positiveDaysWords.split(' ')
-    
-  function unique(value, index, self){
-    return self.indexOf(value) === index
+  function unique(value, index, self) {
+    return self.indexOf(value) === index;
   }
-    const uniquePosWords= posWordsArr.filter(unique) 
- 
+  const uniquePosWords = posWordsArr.filter(unique);
 
-    const posWordsData = uniquePosWords.map(word=> {return {text: word, value: 0}})
-    
+  const posWordsData = uniquePosWords.map((word) => {
+    return { text: word, value: 0 };
+  });
 
-  posWordsArr.forEach(word=> {
-    let index = posWordsData.findIndex(x=> x.text == word)
-    posWordsData[index].value += 1 
-    
-  })
- 
+  posWordsArr.forEach((word) => {
+    let index = posWordsData.findIndex((x) => x.text == word);
+    posWordsData[index].value += 1;
+  });
 
-const cloud = <WordCloud data={posWordsData} />
-
-
-
-
+  const cloud = <WordCloud data={posWordsData} />;
 
   //chart data
 
@@ -80,7 +81,6 @@ const cloud = <WordCloud data={posWordsData} />
       day: new Date(entry.date_created).getDay(),
     };
   });
-
 
   return (
     <Wrapper>
@@ -105,12 +105,7 @@ const cloud = <WordCloud data={posWordsData} />
 
       {/* {cloud} */}
     </Wrapper>
-   
-  
   );
 };
 
 export default Vizualize;
-
-
- 

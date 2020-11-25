@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-font-size: var(--fontSuperBig);
-color: var(--chocolateBrown);
-text-align: center;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-font-family: var(--fontHandwritten)
-` 
+  font-size: var(--fontSuperBig);
+  color: var(--chocolateBrown);
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: var(--fontHandwritten);
+`;
