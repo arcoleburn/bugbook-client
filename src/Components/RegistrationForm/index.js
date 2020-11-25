@@ -9,7 +9,7 @@ import {
 const initialFormState = {
   regUsername: '',
   regPassword: '',
-  confrimPass: '',
+  confirmPass: '',
   email: '',
   firstName: '',
 };
@@ -33,7 +33,7 @@ const RegistrationForm = (props) => {
     const {
       regUsername,
       regPassword,
-      confrimPass,
+      confirmPass,
       email,
       firstName,
     } = state;
@@ -47,20 +47,17 @@ const RegistrationForm = (props) => {
 
     AuthApiService.postUser(newUser)
       .then((res) => {
-        if (!res.ok) {
-          //this error response is not working
-          return res.json().then((error) => Promise.reject(error));
-        }
+        
 
-        regUsername.value = '';
-        regPassword.value = '';
-        confrimPass.value = '';
-        email.value = '';
-        firstName.value = '';
+        // regUsername.value = '';
+        // regPassword.value = '';
+        // confirmPass.value = '';
+        // email.value = '';
+        // firstName.value = '';
         props.onRegistrationSuccess();
       })
       .catch((res) => {
-        'err caught';
+        
         setError({ error: res.error });
       });
   };

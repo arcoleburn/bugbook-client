@@ -8,9 +8,11 @@ import userInfoService from '../../services/user-info-service';
 import chunk from '../Utils/helpers';
 import { ControlButtons, LabelBar, Wrapper } from './Timeline.styles';
 import { Link } from 'react-router-dom';
+import { compareAsc, isSameDay } from 'date-fns';
 
 const Timeline = (props) => {
  
+const todayDate = new Date();
   const [isLoading, setIsLoading] = useState(false);
   const [display, setDisplay] = useState(0);
 
@@ -55,7 +57,8 @@ const Timeline = (props) => {
             ].props.date
           ).toDateString()}{' '}
       </h3>
-      <Link to = {'/new-entry'}>Today's Entry</Link>
+      <Link to = {entries.length &&
+      isSameDay(todayDate, new Date(entries[0].date_created))? '/edit': '/new-entry'}>Today's Entry</Link>
       <LabelBar>
         <div>Date:</div>
         <div>Hours:</div>

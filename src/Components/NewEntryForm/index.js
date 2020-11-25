@@ -27,7 +27,7 @@ const todayDate = new Date();
 const NewEntry = (props) => {
   const { entries } = props;
 
-  const [today, setToday] = useState(false);
+  // const [today, setToday] = useState(false);
   //const [state, dispatch] = useReducer(reducer, initialFormState);
 
   const [rating, setRating] = useState(0);
@@ -39,18 +39,18 @@ const NewEntry = (props) => {
     currentEntry = entries[0];
   }
 
-  useEffect(() => {
-    if (
-      entries.length &&
-      isSameDay(todayDate, new Date(entries[0].date_created))
-    ) {
+  // useEffect(() => {
+  //   if (
+  //     entries.length &&
+  //     isSameDay(todayDate, new Date(entries[0].date_created))
+  //   ) {
 
-      setToday(true);
-      props.history.push('/edit');
-    } else {
-      setToday(false);
-    }
-  }, []);
+  //     setToday(true);
+  //     // props.history.push('/edit');
+  //   } else {
+  //     setToday(false);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (props.edit) {
@@ -81,7 +81,7 @@ const NewEntry = (props) => {
     });
   };
   let handleEdit;
-  if (props.edit) {
+  // if (props.edit) {
     handleEdit = (e) => {
       e.preventDefault();
       let newEntry = {
@@ -90,29 +90,24 @@ const NewEntry = (props) => {
         journal_entry: entry,
       };
       ApiService.editEntry(currentEntry.id, newEntry).then((x) => {
-      
+        console.log(x)
         let newEntries = [...entries];
         newEntries.splice(0, 1, x);
-        props.setEntries(newEntries);
+        props.setEntries([...newEntries]);
+        console.log('new entries', newEntries)
         props.history.push('/timeline');
-      });
+      }).catch(err=>console.log('err', err))
     };
-  }
+  // }
 
-  if (props.entries.length > 0) {
-    const now = new Date();
-    const date = now.toDateString();
-  }
+  // if (props.entries.length > 0) {
+  //   const now = new Date();
+  //   const date = now.toDateString();
+  // }
   return (
     <Wrapper>
       <DatePage />
-      {today && !props.edit ? (
-        <p>
-          {' '}
-          youve already made an entry today, please go to the edit
-          page on the timeline to edit
-        </p>
-      ) : (
+      
         <EntryForm>
           <label htmlFor="rating">How was today? (-2/+2 scale)</label>
           <select
@@ -152,7 +147,7 @@ const NewEntry = (props) => {
             {props.edit ? 'Edit' : 'Submit'}
           </button>
         </EntryForm>
-      )}
+      
     </Wrapper>
   );
 };

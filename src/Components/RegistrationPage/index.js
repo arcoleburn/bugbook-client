@@ -4,8 +4,10 @@ import RegistrationForm from '../RegistrationForm'
 
 const RegistrationPage = (props) => {
   const handleRegistrationSuccess = (user) => {
+    console.log('reg success ran')
     const { history } = props;
-    history.push('./login');
+    console.log('history', history)
+    history.push('/login');
   };
 
   return (

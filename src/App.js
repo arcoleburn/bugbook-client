@@ -89,6 +89,7 @@ const App = () => {
                 {...props}
                 setUserId={setUserId}
                 setFirstName={setFirstName}
+                entries={entries}
               />
             )}
           />
