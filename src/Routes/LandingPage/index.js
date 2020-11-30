@@ -121,7 +121,7 @@ const LandingPage = (props) => {
             <h4>Observations</h4>
 
             <p>
-              Observations: Develop a consistent journaling practice,
+              Develop a consistent journaling practice,
               and you're bound to notice things on your own.
               Observations is a place to log those things. Think of
               yourself as a scientist studying a brand new species of

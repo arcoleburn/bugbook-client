@@ -27,7 +27,7 @@ const Home = (props) => {
         </Link>
         <Link to="/timeline">Timeline</Link>
         <Link to="/observations">Observations</Link>
-        <Link to="/vizualize">Vizualize</Link>
+        <Link to="/vizualize">Visualize</Link>
         <div></div>
       </Content>
       <div></div>

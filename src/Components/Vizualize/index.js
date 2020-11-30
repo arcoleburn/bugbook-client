@@ -10,9 +10,9 @@ const Vizualize = (props) => {
   const renderIntro = () => {
     return (
       <Wrapper>
-        <h2> Vizualize: </h2>
+        <h2> Visualize: </h2>
         <p>
-          Here you can select different vizualizations of your journal
+          Here you can select different visualizations of your journal
           data to help find patterns.
         </p>
         <p>
@@ -99,7 +99,7 @@ const Vizualize = (props) => {
       {display !== 'intro' ? (
         <button id="home" onClick={() => setDisplay('intro')}>
           {' '}
-          Vizualize Home
+          Visualize Home
         </button>
       ) : null}
 
