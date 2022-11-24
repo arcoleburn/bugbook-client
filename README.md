@@ -1,6 +1,7 @@
 # BugBook Journal
 
 Live App at https://bugbookjournal.com 
+NOTE: Due to Heroku deprecating their free tier, the live app is currently broken
 
 
 
